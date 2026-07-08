@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>學習歷程：農業概論下冊 — 互動學習路徑</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;
+--c1:#1e6fbf;--c2:#7b3fa0;--c3:#0d9488;--c4:#d97706;--c5:#c0392b;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.7}
+a{color:inherit}
+.hero{background:linear-gradient(135deg,var(--navy),var(--accent));color:#fff;padding:34px 24px}
+.crumb{font-size:.82rem;color:#cdd8ef;margin-bottom:10px}
+.crumb a{color:#cdd8ef;text-decoration:none}
+.hero h1{font-size:1.9rem;margin-bottom:8px}
+.hero p{max-width:860px;color:#e8f0ff}
+.badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:8px 14px;font-size:.86rem}
+.badge b{font-size:1.2rem;display:block}
+main{max-width:1060px;margin:0 auto;padding:24px 16px}
+.progwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:22px}
+.progbar{height:14px;background:#e9edf6;border-radius:8px;overflow:hidden;margin:10px 0}
+.progbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--c3));transition:.3s}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:#4a5468}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.guide{font-size:.9rem;color:#4a5468;margin-top:8px}
+.stage{margin:26px 0}
+.stage-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.stage-n{width:38px;height:38px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.15rem;flex:none}
+.stage-h h2{font-size:1.3rem;color:var(--navy)}
+.stage-h .tag{font-size:.74rem;background:#eef2fa;color:var(--navy2);border-radius:6px;padding:2px 9px;margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.node{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:15px 17px;box-shadow:0 2px 8px rgba(20,30,60,.05)}
+.node h3{font-size:1.06rem;color:var(--navy2);margin-bottom:5px}
+.node .ic{font-size:1.15rem;margin-right:5px}
+.node p{font-size:.88rem;color:#4a5468;min-height:38px}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+.links a{font-size:.78rem;text-decoration:none;background:#eef4fc;color:var(--navy2);border:1px solid #cfe0f5;border-radius:20px;padding:4px 11px}
+.links a.rep{background:#e6f7f4;color:#0b6b60;border-color:#bfe6dc}
+.done{display:flex;align-items:center;gap:6px;font-size:.82rem;color:#6a7488;border-top:1px dashed var(--line);padding-top:8px}
+.quiz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin-top:12px}
+.q{border-bottom:1px solid var(--line);padding:14px 0}
+.q:last-child{border-bottom:none}
+.q .qt{font-weight:700;margin-bottom:8px}
+.opt{display:block;padding:8px 12px;margin:5px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer;font-size:.92rem}
+.opt:hover{background:#f2f6fd}
+.opt.sel{border-color:var(--accent);background:#e9f2fc}
+.opt.correct{border-color:#1a9d54;background:#e9f9ef}
+.opt.wrong{border-color:#d64524;background:#fdeeea}
+.exp{font-size:.85rem;background:#f4f7fc;border-left:3px solid var(--accent);padding:8px 12px;margin-top:8px;border-radius:6px;display:none}
+.qbtn{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+button{font-family:inherit;font-weight:700;border:none;border-radius:24px;padding:11px 26px;cursor:pointer}
+.grade{background:var(--accent);color:#fff}
+.reset{background:#eef2fa;color:var(--navy2)}
+#score{margin-top:14px;font-size:1.1rem;font-weight:800;display:none;padding:12px 16px;border-radius:10px}
+.small{background:none;border:1px solid var(--line);color:#6a7488;font-weight:600;padding:6px 16px;font-size:.82rem}
+footer{text-align:center;color:#8792a8;font-size:.82rem;padding:26px}
+</style></head>
+<body>
+<div class="hero">
+  <div class="crumb"><a href="專有名詞索引.html">← 專有名詞資料庫</a></div>
+  <h1>🧭 學習歷程：農業概論下冊</h1>
+  <p>依教材《農業概論下冊》規劃的五階段互動學習路徑，涵蓋林業、水產養殖、畜牧、農產加工、農業經營管理與農民組織推廣。每個節點都能開啟教材對應頁與專有名詞深度報告，最後以線上測驗檢核成果。</p>
+  <div class="badges">
+    <div class="badge"><b>6</b>教材章節</div>
+    <div class="badge"><b>21</b>學習節點</div>
+    <div class="badge"><b>12</b>測驗題目</div>
+    <div class="badge"><b>3</b>深度報告</div>
+  </div>
+</div>
+<main>
+  <div class="progwrap">
+    <b>學習進度</b>
+    <div class="progbar"><i id="pi"></i></div>
+    <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#4a5468">
+      <span id="ptxt">已完成 0 / 21 個節點</span>
+      <button class="small reset" onclick="resetJ()">重設進度</button>
+    </div>
+    <div class="legend" style="margin-top:12px">
+      <span><i class="dot" style="background:var(--c1)"></i>基本概念</span>
+      <span><i class="dot" style="background:var(--c2)"></i>主要論點與操作</span>
+      <span><i class="dot" style="background:var(--c3)"></i>專有名詞</span>
+      <span><i class="dot" style="background:var(--c4)"></i>實作步驟</span>
+      <span><i class="dot" style="background:var(--c5)"></i>學習成果測驗</span>
+    </div>
+    <div class="guide">建議走法：由上而下依序完成五階段。先在「基本概念」建立全書地圖，再逐章掌握核心論點，接著精讀三個專有名詞深度報告，最後跟著實作流程動手做，並以線上測驗自我檢核（達 70% 為通過）。</div>
+  </div>
+
+  <!-- 階段一 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c1)">1</div><h2>基本概念<span class="tag">打地基</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s1a" style="border-left-color:var(--c1)">
+        <h3><span class="ic">🗺️</span>下冊全書地圖</h3>
+        <p>《農業概論下冊》分六大領域：林業、水產、畜牧、加工、經營、推廣，構成台灣農業的完整產業鏈。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.2（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s1b" style="border-left-color:var(--c1)">
+        <h3><span class="ic">🎯</span>各章學習目標</h3>
+        <p>每章開頭都有「學習目標」，先讀目標再讀內文，抓住每個領域最該學會的三件事。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.128（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s1c" style="border-left-color:var(--c1)">
+        <h3><span class="ic">🌱</span>農業三生功能</h3>
+        <p>現代農業兼顧「生產、生活、生態」三生功能——不只生產糧食，也維護環境與農村文化。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.246（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段二 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c2)">2</div><h2>主要論點與操作<span class="tag">核心知識</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s2a" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🌲</span>林業經營與保育</h3>
+        <p>森林經營以「保續收穫」為最高原則，兼顧保育性、公益性、經濟性、永續性，並推動多目標經營。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.3（紙本課本）</span><a class="rep" href="永續收穫經營_摘要報告.html">🔗 永續收穫經營</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2b" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🪵</span>林產利用與木材性質</h3>
+        <p>木材具外觀、物理、力學、化學性質；經乾燥、防腐、膠合、塗裝後製成合板、紙漿與木炭。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.60（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2c" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🐟</span>水產養殖管理</h3>
+        <p>依水源分淡水與鹹水養殖，管理重點是水溫、水質（溶氧、氨氮）、放養密度與魚病防治。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.87（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2d" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🐄</span>畜牧與禽畜飼養</h3>
+        <p>畜牧涵蓋禽畜的生長、營養、飼料、繁殖與飼養；反芻動物有瘤胃，能消化牧草纖維。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.129（紙本課本）</span><a class="rep" href="生物安全_摘要報告.html">🔗 生物安全</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2e" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🥫</span>農產加工原理</h3>
+        <p>加工用降低水分、低溫、加熱殺菌密封、煙燻、發酵、降 pH 等方法抑制腐敗，提高貯藏性與附加價值。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.181（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2f" style="border-left-color:var(--c2)">
+        <h3><span class="ic">📊</span>農產運銷與經營</h3>
+        <p>農產運銷含行銷、運銷職能、批發市場與價格形成；經營型態延伸出休閒農業與有機農業。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.247（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2g" style="border-left-color:var(--c2)">
+        <h3><span class="ic">👥</span>農民組織與推廣</h3>
+        <p>農會、合作社、農田水利會等農民團體，透過農業推廣體系與農民學院提供教育與技藝訓練。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.299（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段三 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c3)">3</div><h2>專有名詞<span class="tag">深度報告</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s3a" style="border-left-color:var(--c3)">
+        <h3><span class="ic">♻️</span>永續收穫經營</h3>
+        <p>「只取利息、不動本金」——採伐量不超過生長量，讓森林永續產出。（三頁式深度報告）</p>
+        <div class="links"><a class="rep" href="永續收穫經營_摘要報告.html">🔗 開啟報告</a><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.25（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s3b" style="border-left-color:var(--c3)">
+        <h3><span class="ic">🛡️</span>生物安全</h3>
+        <p>禽畜防疫第一道防線：生物阻絕、生物管理、生物防堵三層防護。（三頁式深度報告）</p>
+        <div class="links"><a class="rep" href="生物安全_摘要報告.html">🔗 開啟報告</a><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.174（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s3c" style="border-left-color:var(--c3)">
+        <h3><span class="ic">🌿</span>有機農業</h3>
+        <p>不用化學農藥與化肥、遵循自然循環的農法，需通過驗證取得標章。（三頁式深度報告）</p>
+        <div class="links"><a class="rep" href="有機農業_摘要報告.html">🔗 開啟報告</a><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.266（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段四 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c4)">4</div><h2>實作步驟<span class="tag">動手做</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s4a" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🌳</span>森林培育流程</h3>
+        <p>整地 → 播種／植苗 → 撫育（除草、修枝、疏伐）→ 主伐更新，落實永續收穫。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.38（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4b" style="border-left-color:var(--c4)">
+        <h3><span class="ic">💧</span>養殖池水質管理</h3>
+        <p>測水溫、溶氧、pH、氨氮；換水與打氣增氧、投餌控量、定期防治魚病。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.99（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4c" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🧼</span>農場生物安全 SOP</h3>
+        <p>人車消毒、更衣淋浴、劃分潔淨區與污染區、隔離檢疫、糞污三段式處理。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.174（紙本課本）</span><a class="rep" href="生物安全_摘要報告.html">🔗 生物安全</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4d" style="border-left-color:var(--c4)">
+        <h3><span class="ic">📜</span>有機農產驗證流程</h3>
+        <p>田區淨空（土壤 3 年、隔離帶）→ 申請驗證機構 → 資料審查與田間查證 → 取得有機標章。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.266（紙本課本）</span><a class="rep" href="有機農業_摘要報告.html">🔗 有機農業</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4e" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🥬</span>農產加工實作</h3>
+        <p>選料 → 前處理 → 加工（乾燥／醃漬／發酵／殺菌）→ 密封包裝 → 貯藏，做好衛生管理。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 教材 p.181（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段五 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c5)">5</div><h2>學習成果測驗<span class="tag">自我檢核</span></h2></div>
+    <div class="grid" style="margin-bottom:14px">
+      <div class="node" data-id="s5a" style="border-left-color:var(--c5)">
+        <h3><span class="ic">📝</span>全冊重點回顧</h3>
+        <p>回顧六大領域核心概念與三個專有名詞，確認自己都能用一句話說明。</p>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s5b" style="border-left-color:var(--c5)">
+        <h3><span class="ic">✅</span>完成線上測驗</h3>
+        <p>作答下方 12 題並交卷計分，達 70% 通過；未過可對照解析後重作。</p>
+        <div class="links"><a href="#quiz">▶ 前往測驗</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+    <div class="quiz" id="quiz">
+      <h2 style="color:var(--navy);margin-bottom:6px">📋 線上複習測驗（12 題）</h2>
+      <p style="font-size:.88rem;color:#4a5468;margin-bottom:8px">每題單選，作答後按「交卷計分」。</p>
+      <div id="qlist"></div>
+      <div class="qbtn"><button class="grade" onclick="gradeQuiz()">交卷計分</button><button class="reset" onclick="resetQuiz()">重新作答</button></div>
+      <div id="score"></div>
+    </div>
+  </div>
+</main>
+<footer>園藝技術教材專案　·　學習歷程：農業概論下冊　·　進度儲存於本機瀏覽器</footer>
+<script>
+// ===== 進度追蹤 =====
+const JKEY='journey_農業概論下冊_v1';
+const boxes=[...document.querySelectorAll('.node .done input')];
+function loadJ(){let s={};try{s=JSON.parse(localStorage.getItem(JKEY))||{}}catch(e){}
+  boxes.forEach(b=>{const id=b.closest('.node').dataset.id; b.checked=!!s[id];});updateJ();}
+function saveJ(){const s={};boxes.forEach(b=>{s[b.closest('.node').dataset.id]=b.checked});localStorage.setItem(JKEY,JSON.stringify(s));}
+function updateJ(){const d=boxes.filter(b=>b.checked).length,t=boxes.length;
+  document.getElementById('pi').style.width=(d/t*100)+'%';
+  document.getElementById('ptxt').textContent=`已完成 ${d} / ${t} 個節點`;}
+boxes.forEach(b=>b.addEventListener('change',()=>{saveJ();updateJ();}));
+function resetJ(){localStorage.removeItem(JKEY);boxes.forEach(b=>b.checked=false);updateJ();}
+loadJ();
+
+// ===== 測驗 =====
+const QUIZ=[
+ {q:'森林經營的最高指導原則是下列何者？',o:['一次全部砍伐求最大收益','保續收穫（永續收穫）','只造林不採伐','優先開發為建地'],a:1,e:'教材第8章指出森林經營以「保續收穫」為最高指導原則，採伐量不超過生長量。'},
+ {q:'「永續收穫經營」的核心精神最接近哪個比喻？',o:['把存款一次領光','只花利息、不動本金','借錢擴大投資','完全不使用森林'],a:1,e:'採伐量控制在年生長量內，如同只取利息不動本金，森林蓄積不減少。'},
+ {q:'禽畜防疫中「生物安全」的第一道、也是最關鍵的防線是？',o:['生物防堵','生物阻絕','疫苗接種','撲殺'],a:1,e:'生物阻絕（Bio-exclusion）阻止病原進入場區，是三層防護中第一且最關鍵者。'},
+ {q:'下列何者屬於農場生物安全措施？',o:['開放遊客自由參觀畜舍','人車進場消毒與劃分潔淨／污染區','病死畜隨意丟棄','共用未消毒器具'],a:1,e:'人車消毒、分區管理、隔離檢疫、糞污處理都是生物安全的具體作法。'},
+ {q:'有機農業與慣行農業最主要的差異是？',o:['有機不使用化學合成農藥與化肥','有機一定用溫室','有機不需要驗證','有機只能種水稻'],a:0,e:'有機農業遵循自然循環，禁用化學合成農藥、化肥與基因改造，並須通過驗證。'},
+ {q:'農產品要標示「有機」販售，必須？',o:['自行宣稱即可','通過驗證機構驗證取得標章','只要不灑農藥','向鄰居登記'],a:1,e:'依《有機農業促進法》，須經第三方驗證機構驗證合格並取得有機標章。'},
+ {q:'水產養殖中影響魚類存活最直接的水質指標之一是？',o:['水的顏色','溶氧量','池子形狀','岸邊植物'],a:1,e:'溶氧不足會造成魚類窒息死亡，是養殖水質管理的關鍵指標。'},
+ {q:'反芻動物（如牛、羊）能消化牧草纖維，主要靠？',o:['胃酸','瘤胃中的微生物','牙齒磨碎','小腸酵素'],a:1,e:'反芻動物的瘤胃有大量微生物，能發酵分解纖維素，是其消化特徵。'},
+ {q:'下列哪一項不是農產加工提高貯藏性的原理？',o:['降低水分含量','低溫保存','加熱殺菌並密封','增加濕度促進發霉'],a:3,e:'加工是要抑制微生物；增加濕度會促進腐敗，與加工目的相反。'},
+ {q:'把新鮮蔬果製成醃漬品或發酵食品，主要利用哪種加工方式？',o:['發酵與降低 pH','冷凍','打蠟','染色'],a:0,e:'發酵產生有機酸降低 pH，抑制腐敗菌，是傳統的保存加工方法。'},
+ {q:'台灣的農會、合作社、農田水利會屬於？',o:['營利企業','農民團體（農民組織）','政府機關','外國組織'],a:1,e:'這些都是農民團體，透過推廣體系提供農民教育、技術與服務。'},
+ {q:'現代農業強調的「三生功能」是指？',o:['生產、生活、生態','生長、生病、生產','生產、生殖、生財','生食、生鮮、生產'],a:0,e:'現代農業兼具生產、生活（農村文化）、生態（環境維護）三生功能。'},
+];
+const ql=document.getElementById('qlist');let picked=Array(QUIZ.length).fill(-1),locked=false;
+QUIZ.forEach((it,qi)=>{const d=document.createElement('div');d.className='q';
+ d.innerHTML=`<div class="qt">${qi+1}. ${it.q}</div>`+it.o.map((o,oi)=>`<label class="opt" data-q="${qi}" data-o="${oi}">${'ABCD'[oi]}. ${o}</label>`).join('')+`<div class="exp" id="e${qi}">✔ ${it.e}</div>`;
+ ql.appendChild(d);});
+ql.addEventListener('click',e=>{const l=e.target.closest('.opt');if(!l||locked)return;
+ const qi=+l.dataset.q,oi=+l.dataset.o;picked[qi]=oi;
+ [...ql.querySelectorAll(`.opt[data-q="${qi}"]`)].forEach(x=>x.classList.remove('sel'));l.classList.add('sel');});
+function gradeQuiz(){if(locked)return;let sc=0;
+ QUIZ.forEach((it,qi)=>{const opts=[...ql.querySelectorAll(`.opt[data-q="${qi}"]`)];
+  opts.forEach((o,oi)=>{if(oi===it.a)o.classList.add('correct');
+   if(picked[qi]===oi&&oi!==it.a)o.classList.add('wrong');});
+  if(picked[qi]===it.a)sc++;document.getElementById('e'+qi).style.display='block';});
+ locked=true;const pct=Math.round(sc/QUIZ.length*100);const el=document.getElementById('score');
+ el.style.display='block';const pass=pct>=70;
+ el.style.background=pass?'#e9f9ef':'#fdeeea';el.style.color=pass?'#0b6b3a':'#a5311c';
+ el.textContent=`得分 ${sc}/${QUIZ.length}（${pct}%）— ${pass?'通過！森林般紮實 🌲':'再接再厲，對照解析後重作一次'}`;
+ el.scrollIntoView({behavior:'smooth'});}
+function resetQuiz(){locked=false;picked=Array(QUIZ.length).fill(-1);
+ [...ql.querySelectorAll('.opt')].forEach(o=>o.classList.remove('sel','correct','wrong'));
+ [...ql.querySelectorAll('.exp')].forEach(x=>x.style.display='none');
+ document.getElementById('score').style.display='none';}
+</script>
+</body></html>
