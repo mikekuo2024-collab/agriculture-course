@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>人工授精 — 深度研究報告</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.75}
+nav.top{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;flex-wrap:wrap;gap:8px}
+nav.top .brand{font-weight:700;font-size:1.05rem}
+nav.top .links{display:flex;gap:18px}
+nav.top a{color:#cdd8ef;text-decoration:none;font-size:.92rem}
+nav.top a:hover{color:#fff}
+nav.top .meta{font-size:.72rem;color:#9fb0d6;text-align:right;line-height:1.4}
+.banner{background:linear-gradient(135deg,var(--navy2),var(--accent));color:#fff;padding:38px 26px}
+.banner h1{font-size:1.9rem;margin-bottom:10px}
+.banner p{max-width:900px;font-size:1.02rem;color:#eaf1ff}
+main{max-width:1000px;margin:0 auto;padding:26px 18px}
+section.page{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-bottom:26px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+h2.pt{color:var(--navy2);font-size:1.4rem;border-left:6px solid var(--accent);padding-left:12px;margin-bottom:16px}
+h3{color:var(--navy);margin:18px 0 8px;font-size:1.12rem}
+.def{background:#eef4fc;border:1px solid #cfe0f5;border-radius:10px;padding:16px 18px;margin:12px 0}
+.quote{border-left:4px solid var(--teal);background:#f0fbf9;padding:10px 16px;margin:12px 0;color:#0f3d38;font-style:italic}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy2);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card .ic{font-size:1.5rem;color:var(--accent)}
+.card h4{color:var(--navy2);margin:6px 0}
+ol.steps{margin:12px 0 12px 20px}
+ol.steps li{margin-bottom:8px}
+.warn{background:#fff4f2;border:1px solid #f3c4bb;border-left:5px solid #d64524;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok{background:#f0fbf4;border:1px solid #bfe6cd;border-left:5px solid #1a9d54;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok ul,.warn ul{margin-left:18px}
+.refs{font-size:.86rem}
+.refs li{margin-bottom:8px}
+.tag{display:inline-block;background:#e7eefb;color:var(--navy2);border-radius:6px;padding:1px 8px;font-size:.74rem;margin-right:6px}
+@media print{nav.top{position:static}section.page{page-break-after:always;box-shadow:none}}
+</style></head>
+<body>
+<nav class="top">
+  <div class="brand">人工授精</div>
+  <div class="links"><a href="#page1">定義與起源</a><a href="#page2">核心架構與流程</a><a href="#page3">實戰・風險・資源</a></div>
+  <div class="meta">整理日期：2026-07-09<br>參考來源：8 篇</div>
+</nav>
+<div class="banner"><h1>人工授精（AI, Artificial Insemination）</h1>
+<p>人工授精就像把一頭頂級公畜的優良基因「快遞」到全國各牧場——用人為方式採精、檢查、稀釋、保存，再在母畜排卵最適時機注入。它讓一次採精服務十餘頭母畜，是現代畜牧提高受胎率、加速品種改良、又能防疫的核心技術。</p></div>
+<main>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page" id="page1"><h2 class="pt">一、定義與起源</h2>
+
+<div class="def">
+<h3>什麼是人工授精？</h3>
+<p><strong>人工授精（Artificial Insemination, AI）</strong>是「以<strong>人為方法</strong>自公畜採取精液，經<strong>檢查、處理</strong>後<strong>注入母畜生殖器內</strong>，達到繁殖目的」的一種配種技術。用生活化的比喻：它像把公畜的優良基因做成「<strong>宅配包裹</strong>」——採精是打包、檢查稀釋是分裝、保存是冷鏈、授精是準時送達，讓一頭好公畜的後代遍布各地。</p>
+</div>
+
+<div class="quote">「以人為方法自公畜採取精液，經檢查、處理後注入母畜生殖器內，達繁殖之目的。」——《農業概論下冊》第10章 畜牧・10-2 禽畜的生長及繁殖（教材 PDF <strong>p155–157</strong>）</div>
+
+<h3>六大優點：為什麼 AI 逐漸取代自然配種？</h3>
+<div class="cards">
+  <div class="card"><div class="ic">①</div><h4>提高受胎率及產仔數</h4><p>精液經檢查、篩選、稀釋，品質有保障，配種成功率更穩定。</p></div>
+  <div class="card"><div class="ic">②</div><h4>加速品種改良</h4><p>一頭好公畜短時間留大量後裔，能<strong>提早判斷遺傳能力</strong>（後裔測定）。</p></div>
+  <div class="card"><div class="ic">③</div><h4>節省飼養公畜頭數</h4><p>不必每場養公畜，大幅降低飼養成本。</p></div>
+  <div class="card"><div class="ic">④</div><h4>避免公母體型差異</h4><p>體型相差太大、或公畜腿弱無法自然配種時，仍可施行配種。</p></div>
+  <div class="card"><div class="ic">⑤</div><h4>減少畜群疾病傳播</h4><p>公母不直接接觸，降低因配種而感染疾病的風險。</p></div>
+  <div class="card"><div class="ic">⑥</div><h4>克服距離與時間限制</h4><p>精液可運送、可保存，突破地理與時間的限制。</p></div>
+</div>
+
+<h3>相關概念對照表</h3>
+<table>
+<tr><th>概念</th><th>白話說明</th><th>好記比喻</th></tr>
+<tr><td>人工授精 AI</td><td>人為採精、處理後注入母畜的配種法</td><td>基因「宅配」</td></tr>
+<tr><td>自然配種（本交）</td><td>公母畜直接交配</td><td>「面對面」交配</td></tr>
+<tr><td>後裔測定</td><td>由後代表現判斷公畜遺傳能力</td><td>看「成績單」選種</td></tr>
+<tr><td>選性精液</td><td>分離 X/Y 精子，指定生公或母</td><td>可「預約性別」的精液</td></tr>
+</table>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page" id="page2"><h2 class="pt">二、核心架構與流程</h2>
+
+<h3>五大關卡：從公畜到母畜的一條龍</h3>
+<div class="cards">
+  <div class="card"><div class="ic">◆</div><h4>採精 Collection</h4><p>牛用<strong>人工偽陰道收集法</strong>、豬用<strong>直接採精法</strong>，衛生地收集精液。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>精液檢查 Exam</h4><p>外觀＋顯微鏡雙重把關，不合格即淘汰。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>稀釋 Dilution</h4><p>加稀釋液與制菌劑，把一次射精放大成多劑量。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>保存 Storage</h4><p>冷藏（豬 15–18℃）或冷凍（-196℃ 液態氮）。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>授精 Insemination</h4><p>在排卵最適期把精液注入子宮頸。</p></div>
+</div>
+
+<h3>五步驟編號流程</h3>
+<ol class="steps">
+  <li><strong>採精</strong>：牛以人工偽陰道模擬母牛溫度壓力誘導射精；豬以徒手直接採精，並濾除白色膠體。</li>
+  <li><strong>精液檢查</strong>：外觀（顏色乳白、氣味、豬精液量 250 ml、pH 7.0–7.8 微鹼）＋顯微鏡（直線前進最佳、豬每 ml 2–3 億精子、畸形率、正常精子須 &gt; 70%）。</li>
+  <li><strong>稀釋</strong>：0.9% 生理食鹽水或 5–6% 葡萄糖，加制菌劑（磺胺劑／抗生素）；雞 1 倍、豬 2 倍；稀釋後每 ml 至少含 1 億以上精子。</li>
+  <li><strong>保存</strong>：冷藏（豬 15–18℃，短期 2–5 天）；冷凍（-196℃ 液態氮永久保存）。</li>
+  <li><strong>授精</strong>：把精液注入子宮頸，並配合排卵期（見下方表10-5）。</li>
+</ol>
+
+<div class="def">
+<h3>精液檢查合格標準表</h3>
+<table>
+<tr><th>項目</th><th>合格標準（課本）</th></tr>
+<tr><td>顏色／外觀</td><td>乳白色、無血無膿、無異常沉澱</td></tr>
+<tr><td>精液量（豬）</td><td>約 250 ml（家禽畜中最多）</td></tr>
+<tr><td>酸鹼值 pH</td><td>7.0–7.8（微鹼）</td></tr>
+<tr><td>精子運動</td><td>直線前進最佳</td></tr>
+<tr><td>精子濃度（豬）</td><td>每 ml 2–3 億</td></tr>
+<tr><td>正常精子比率</td><td>&gt; 70%</td></tr>
+<tr><td>稀釋後濃度</td><td>每 ml ≥ 1 億精子</td></tr>
+</table>
+</div>
+
+<h3>表10-5　各家畜配種最適時間</h3>
+<table>
+<tr><th>家畜</th><th>配種最適時間</th></tr>
+<tr><td>牛</td><td>發情後 15 小時</td></tr>
+<tr><td>馬</td><td>發情後 96 小時</td></tr>
+<tr><td>豬</td><td>發情後 26–30 小時</td></tr>
+<tr><td>山羊</td><td>發情後 24–36 小時</td></tr>
+<tr><td>綿羊</td><td>發情後 24–30 小時</td></tr>
+<tr><td>兔</td><td>誘發排卵（交配刺激後排卵）</td></tr>
+</table>
+
+<div class="quote">「授精時通常以左手將母豬大陰唇撥開，右手持注入器……達子宮頸的第二褶襞後再緩慢注入。」——農業部農業知識入口網〈授精操作過程〉</div>
+</section>
+
+<!-- ===================== PAGE 3 ===================== -->
+<section class="page" id="page3"><h2 class="pt">三、實戰・風險・資源</h2>
+
+<h3>台灣實務：乳牛與豬隻的 AI 現場</h3>
+<div class="cards">
+  <div class="card"><div class="ic">▶</div><h4>乳牛：冷凍精液主流</h4><p>荷蘭牛幾乎全面 AI，向畜試所或民間購買 -196℃ 液態氮冷凍精液，需要時解凍配種，可引進世界頂級公牛基因。</p></div>
+  <div class="card"><div class="ic">▶</div><h4>乳牛：選性精液</h4><p>以流式細胞儀分離 X/Y 精子，女牛出生率可達約 <strong>91%</strong>，對需要母牛產乳的乳牛場價值極高。</p></div>
+  <div class="card"><div class="ic">▶</div><h4>豬：供精中心／AI 站</h4><p>集中飼養優良公豬，採精→檢查→稀釋→分裝冷藏（15–16℃）→配送；一次採精可服務十餘頭母豬。</p></div>
+</div>
+
+<div class="warn">
+<h3>⚠ 紅色警示：這些錯誤會讓 AI 失敗</h3>
+<ul>
+<li><strong>精液未檢查就用</strong>：畸形率高、活力差（正常精子未達 70%）的精液會拉低受胎率。</li>
+<li><strong>稀釋液與精液溫差過大</strong>：造成精子冷/熱休克死亡；務必等溫、緩慢倒入。</li>
+<li><strong>冷鏈中斷</strong>：豬精液受日光直射、劇烈振盪或溫度驟變即失活；冷凍精液液態氮未補充會回溫報廢。</li>
+<li><strong>錯過排卵最適期</strong>：如豬須於發情後 26–30 小時授精，錯過則卵子老化、受胎失敗。</li>
+<li><strong>器具、外陰未消毒</strong>：易造成母畜子宮感染。</li>
+</ul>
+</div>
+
+<div class="ok">
+<h3>✓ 綠色實作清單：人工授精自我檢查</h3>
+<ul>
+<li>✓ 採精器具、採精瓶已消毒，並濾除膠體</li>
+<li>✓ 公畜採精頻度適當（豬約三天一次）</li>
+<li>✓ 精液外觀乳白、pH 7.0–7.8、正常精子 &gt; 70% 才使用</li>
+<li>✓ 稀釋等溫緩混、加制菌劑，稀釋後每 ml ≥ 1 億精子</li>
+<li>✓ 保存溫度正確（豬冷藏 15–18℃／冷凍 -196℃），避光避震</li>
+<li>✓ 精確偵測發情，於配種適期（依表10-5）授精</li>
+<li>✓ 母畜外陰以 70% 酒精棉消毒後再插入注入器</li>
+<li>✓ 精液注入子宮頸、緩慢注入、無逆流</li>
+</ul>
+</div>
+
+<h3>完整參考來源列表（共 8 篇）</h3>
+<ol class="refs">
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・10-2 禽畜的生長及繁殖／人工授精（本專案教材 PDF 第 155–157 頁）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章・表10-5 各家畜配種最適時間、精液檢查與稀釋保存數據（第 155–157 頁）</li>
+<li><span class="tag">台灣</span>農業部 農業知識入口網〈認識人工授精〉 — kmweb.moa.gov.tw/subject/subject.php?id=20936</li>
+<li><span class="tag">台灣</span>農業部 農業知識入口網〈採精操作過程〉 — kmweb.moa.gov.tw/subject/subject.php?id=20938</li>
+<li><span class="tag">台灣</span>農業部 農業知識入口網〈授精操作過程〉 — kmweb.moa.gov.tw/subject/subject.php?id=20939</li>
+<li><span class="tag">台灣</span>農業部畜產試驗所 種原資訊網〈乳牛人工授精〉 — angrin.tlri.gov.tw/artda/cattle/cattle.html</li>
+<li><span class="tag">台灣</span>農業部畜產試驗所〈如何成功地使用乳牛選性精液〉 — angrin.tlri.gov.tw/cow/dhi94/dhi94P37.htm</li>
+<li><span class="tag">國際</span>Virginia Tech / Missouri Extension《Artificial Insemination & Semen Collection in Swine》</li>
+</ol>
+</section>
+</main></body></html>

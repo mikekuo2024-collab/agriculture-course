@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>學習歷程：第10章 畜牧 — 互動學習路徑</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;
+--c1:#1e6fbf;--c2:#7b3fa0;--c3:#0d9488;--c4:#d97706;--c5:#c0392b;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.7}
+a{color:inherit}
+.hero{background:linear-gradient(135deg,var(--navy),var(--accent));color:#fff;padding:34px 24px}
+.crumb{font-size:.82rem;color:#cdd8ef;margin-bottom:10px}
+.crumb a{color:#cdd8ef;text-decoration:none}
+.hero h1{font-size:1.9rem;margin-bottom:8px}
+.hero p{max-width:900px;color:#e8f0ff}
+.badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+.badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:10px;padding:8px 14px;font-size:.86rem}
+.badge b{font-size:1.2rem;display:block}
+main{max-width:1060px;margin:0 auto;padding:24px 16px}
+.progwrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:22px}
+.progbar{height:14px;background:#e9edf6;border-radius:8px;overflow:hidden;margin:10px 0}
+.progbar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--c1),var(--c3));transition:.3s}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.8rem;color:#4a5468}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.guide{font-size:.9rem;color:#4a5468;margin-top:8px}
+.stage{margin:26px 0}
+.stage-h{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.stage-n{width:38px;height:38px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.15rem;flex:none}
+.stage-h h2{font-size:1.3rem;color:var(--navy)}
+.stage-h .tag{font-size:.74rem;background:#eef2fa;color:var(--navy2);border-radius:6px;padding:2px 9px;margin-left:6px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:15px}
+.node{background:#fff;border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:12px;padding:15px 17px;box-shadow:0 2px 8px rgba(20,30,60,.05)}
+.node h3{font-size:1.06rem;color:var(--navy2);margin-bottom:5px}
+.node .ic{font-size:1.15rem;margin-right:5px}
+.node p{font-size:.88rem;color:#4a5468;min-height:38px}
+.links{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 8px}
+.links a{font-size:.78rem;text-decoration:none;background:#eef4fc;color:var(--navy2);border:1px solid #cfe0f5;border-radius:20px;padding:4px 11px}
+.links a.rep{background:#e6f7f4;color:#0b6b60;border-color:#bfe6dc}
+.done{display:flex;align-items:center;gap:6px;font-size:.82rem;color:#6a7488;border-top:1px dashed var(--line);padding-top:8px}
+.quiz{background:#fff;border:1px solid var(--line);border-radius:14px;padding:24px 22px;margin-top:12px}
+.q{border-bottom:1px solid var(--line);padding:14px 0}.q:last-child{border-bottom:none}
+.q .qt{font-weight:700;margin-bottom:8px}
+.opt{display:block;padding:8px 12px;margin:5px 0;border:1px solid var(--line);border-radius:9px;cursor:pointer;font-size:.92rem}
+.opt:hover{background:#f2f6fd}.opt.sel{border-color:var(--accent);background:#e9f2fc}
+.opt.correct{border-color:#1a9d54;background:#e9f9ef}.opt.wrong{border-color:#d64524;background:#fdeeea}
+.exp{font-size:.85rem;background:#f4f7fc;border-left:3px solid var(--accent);padding:8px 12px;margin-top:8px;border-radius:6px;display:none}
+.qbtn{margin-top:16px;display:flex;gap:12px;flex-wrap:wrap}
+button{font-family:inherit;font-weight:700;border:none;border-radius:24px;padding:11px 26px;cursor:pointer}
+.grade{background:var(--accent);color:#fff}.reset{background:#eef2fa;color:var(--navy2)}
+#score{margin-top:14px;font-size:1.1rem;font-weight:800;display:none;padding:12px 16px;border-radius:10px}
+.small{background:none;border:1px solid var(--line);color:#6a7488;font-weight:600;padding:6px 16px;font-size:.82rem}
+footer{text-align:center;color:#8792a8;font-size:.82rem;padding:26px}
+</style></head>
+<body>
+<div class="hero">
+  <div class="crumb"><a href="index.html">← 畜牧專有名詞資料庫</a></div>
+  <h1>🧭 學習歷程：第10章 畜牧</h1>
+  <p>依課本《農業概論下冊》第10章規劃的五階段互動學習路徑。內容全部取自課本真實內文（品種、數字、表格、台灣案例），每個節點都能開啟課本對應頁與 12 份專有名詞深度報告，最後以線上測驗檢核。</p>
+  <div class="badges">
+    <div class="badge"><b>4</b>大節（10-1～10-4）</div>
+    <div class="badge"><b>21</b>學習節點</div>
+    <div class="badge"><b>15</b>測驗題目</div>
+    <div class="badge"><b>12</b>深度報告</div>
+  </div>
+</div>
+<main>
+  <div class="progwrap">
+    <b>學習進度</b>
+    <div class="progbar"><i id="pi"></i></div>
+    <div style="display:flex;justify-content:space-between;font-size:.82rem;color:#4a5468">
+      <span id="ptxt">已完成 0 / 21 個節點</span>
+      <button class="small reset" onclick="resetJ()">重設進度</button>
+    </div>
+    <div class="legend" style="margin-top:12px">
+      <span><i class="dot" style="background:var(--c1)"></i>基本概念</span>
+      <span><i class="dot" style="background:var(--c2)"></i>主要論點與操作</span>
+      <span><i class="dot" style="background:var(--c3)"></i>專有名詞</span>
+      <span><i class="dot" style="background:var(--c4)"></i>實作步驟</span>
+      <span><i class="dot" style="background:var(--c5)"></i>學習成果測驗</span>
+    </div>
+    <div class="guide">建議走法：先在「基本概念」建立畜牧全貌，再逐一掌握品種、營養、繁殖、飼養與衛生的核心知識，接著精讀 12 份專有名詞深度報告，跟著實作流程動手做，最後線上測驗自我檢核（達 70% 通過）。</div>
+  </div>
+
+  <!-- 階段一 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c1)">1</div><h2>基本概念<span class="tag">10-1 打地基</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s1a" style="border-left-color:var(--c1)">
+        <h3><span class="ic">🐄</span>畜牧的意義</h3>
+        <p>凡經人類馴養、可大量繁殖並遺傳優良性能的動物即「經濟動物」；利用土地生產家禽家畜的事業就是畜牧。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.130（紙本課本）</span><a class="rep" href="經濟動物與法定家禽家畜_摘要報告.html">🔗 經濟動物</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s1b" style="border-left-color:var(--c1)">
+        <h3><span class="ic">📋</span>法定家禽與家畜</h3>
+        <p>法定家禽：雞鴨鵝火雞鴕鳥；法定家畜：豬牛羊鹿兔馬。鴕鳥 2004 年才列入法定家禽。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.135（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s1c" style="border-left-color:var(--c1)">
+        <h3><span class="ic">💰</span>畜牧的重要性</h3>
+        <p>2017 畜產業年產值 1,654 億元，占農業總產值 32.22%；毛豬產值居農產品之首。含經濟、民生、生態三面向。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.143（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段二 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c2)">2</div><h2>主要論點與操作<span class="tag">核心知識</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s2a" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🐔</span>雞的品種</h3>
+        <p>蛋用來航雞（台灣 94% 蛋雞）、肉用白肉雞（32–40 天達 2 公斤）與台灣有色土雞、蛋肉兼用蘆花洛島紅。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.130（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2b" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🐷</span>豬的品種</h3>
+        <p>國際三大種藍瑞斯、約克夏、杜洛克雜交成三品種雜交豬 LYD；台灣本土有桃園豬、蘭嶼豬、畜試黑豬1號。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.135（紙本課本）</span><a class="rep" href="三品種雜交豬_摘要報告.html">🔗 三品種雜交豬</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2c" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🐮</span>牛羊鹿與反芻</h3>
+        <p>牛羊鹿為偶蹄、反芻動物，有四個胃（瘤胃、蜂巢胃、重瓣胃、皺胃）；兔馬則不反芻、靠盲腸分解粗纖維。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.136（紙本課本）</span><a class="rep" href="反芻與複胃_摘要報告.html">🔗 反芻與複胃</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2d" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🥩</span>六大營養素與飼料</h3>
+        <p>碳水化合物、蛋白質、脂肪、維生素、礦物質、水；飼料分精料與粗料，尿素可代替牛的部分蛋白質。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.145（紙本課本）</span><a class="rep" href="六大營養素_摘要報告.html">🔗 六大營養素</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2e" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🌾</span>牧草與粗料</h3>
+        <p>禾本科狼尾草（產量最高）、盤固草（種最廣）；豆科苜蓿（牧草之后），根部根瘤菌可固定游離氮。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.147（紙本課本）</span><a class="rep" href="牧草與粗料_摘要報告.html">🔗 牧草與粗料</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2f" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🥚</span>禽畜的繁殖</h3>
+        <p>家禽生殖與種蛋孵化、家畜的發情週期與配種；反芻動物懷孕時因瘤胃在左腹而右側腹膨大。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.149（紙本課本）</span><a class="rep" href="發情週期與配種_摘要報告.html">🔗 發情週期</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s2g" style="border-left-color:var(--c2)">
+        <h3><span class="ic">🩺</span>禽畜衛生管理</h3>
+        <p>以生物安全防治為核心：控制感染源、疫苗接種、糞污三段式處理；並由食慾、被毛、黏膜觀察個體健康。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.169（紙本課本）</span><a class="rep" href="生物安全防治_摘要報告.html">🔗 生物安全防治</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段三 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c3)">3</div><h2>專有名詞<span class="tag">12 份深度報告</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s3a" style="border-left-color:var(--c3)"><h3><span class="ic">🐷</span>三品種雜交豬</h3><p>LYD 雜種優勢與台灣本土黑豬育種。</p><div class="links"><a class="rep" href="三品種雜交豬_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3b" style="border-left-color:var(--c3)"><h3><span class="ic">🐮</span>反芻與複胃</h3><p>四個胃如何把牧草變成營養。</p><div class="links"><a class="rep" href="反芻與複胃_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3c" style="border-left-color:var(--c3)"><h3><span class="ic">🐰</span>兔的假反芻</h3><p>兔子夜間食軟糞補充 B 群的秘密。</p><div class="links"><a class="rep" href="兔的假反芻_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3d" style="border-left-color:var(--c3)"><h3><span class="ic">🥩</span>六大營養素</h3><p>禽畜營養與精料粗料。</p><div class="links"><a class="rep" href="六大營養素_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3e" style="border-left-color:var(--c3)"><h3><span class="ic">🌾</span>牧草與粗料</h3><p>狼尾草、盤固草、苜蓿與根瘤菌。</p><div class="links"><a class="rep" href="牧草與粗料_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3f" style="border-left-color:var(--c3)"><h3><span class="ic">🥚</span>種蛋孵化</h3><p>臨界溫度、翻蛋、照蛋與孵化期。</p><div class="links"><a class="rep" href="種蛋孵化_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3g" style="border-left-color:var(--c3)"><h3><span class="ic">💉</span>人工授精</h3><p>採精、檢查、稀釋、保存、授精五步驟。</p><div class="links"><a class="rep" href="人工授精_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3h" style="border-left-color:var(--c3)"><h3><span class="ic">🔁</span>發情週期與配種</h3><p>發情四階段與各家畜配種時機。</p><div class="links"><a class="rep" href="發情週期與配種_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3i" style="border-left-color:var(--c3)"><h3><span class="ic">🛡️</span>生物安全防治</h3><p>防疫三要點與三段式廢水處理。</p><div class="links"><a class="rep" href="生物安全防治_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3j" style="border-left-color:var(--c3)"><h3><span class="ic">🦠</span>口蹄疫與人畜共通病</h3><p>台灣防疫歷程與非洲豬瘟時事。</p><div class="links"><a class="rep" href="口蹄疫與人畜共通傳染病_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3k" style="border-left-color:var(--c3)"><h3><span class="ic">🐔</span>蛋雞與強迫換羽</h3><p>產蛋週期、光照管理與福利爭議。</p><div class="links"><a class="rep" href="蛋雞飼養與強迫換羽_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+      <div class="node" data-id="s3l" style="border-left-color:var(--c3)"><h3><span class="ic">📋</span>經濟動物與法定家禽畜</h3><p>畜牧意義、範圍與產業重要性。</p><div class="links"><a class="rep" href="經濟動物與法定家禽家畜_摘要報告.html">🔗 開啟報告</a></div><label class="done"><input type="checkbox">標記完成</label></div>
+    </div>
+  </div>
+
+  <!-- 階段四 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c4)">4</div><h2>實作步驟<span class="tag">動手做</span></h2></div>
+    <div class="grid">
+      <div class="node" data-id="s4a" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🥚</span>種蛋孵化實作</h3>
+        <p>種蛋鈍端朝上保存（臨界 23.9℃）→孵化期 37.5–37.8℃→每天翻蛋 4–6 次→第 4–6/12/18 日照蛋。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.151（紙本課本）</span><a class="rep" href="種蛋孵化_摘要報告.html">🔗 種蛋孵化</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4b" style="border-left-color:var(--c4)">
+        <h3><span class="ic">💉</span>人工授精流程</h3>
+        <p>採精→精液檢查（豬精子須>70%）→稀釋→保存（冷凍 -196℃）→配合排卵期授精。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.155（紙本課本）</span><a class="rep" href="人工授精_摘要報告.html">🔗 人工授精</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4c" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🐖</span>哺乳仔豬管理</h3>
+        <p>1 週保溫 32℃→剪針齒（8 枚）→3 日齡打鐵劑防貧血→2 週去勢→3 週打豬瘟疫苗→28 天離乳。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.162（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4d" style="border-left-color:var(--c4)">
+        <h3><span class="ic">🧼</span>生物安全 SOP</h3>
+        <p>人車消毒管制→分區與病媒防範→按時疫苗→糞污三段式（固液分離→厭氣→好氣）。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.169（紙本課本）</span><a class="rep" href="生物安全防治_摘要報告.html">🔗 生物安全防治</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s4e" style="border-left-color:var(--c4)">
+        <h3><span class="ic">👀</span>禽畜健康觀察</h3>
+        <p>由食慾、被毛與皮膚、可視黏膜、排泄物、呼吸、腹部逐項觀察，判斷禽畜是否健康。</p>
+        <div class="links"><span style="display:inline-block;font-size:12.5px;color:#8a93ab;border:1px dashed #c7cede;border-radius:16px;padding:3px 11px;margin:0 6px 6px 0" title="課本 PDF 因版權不公開，請對照紙本課本">📖 課本 p.171（紙本課本）</span></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- 階段五 -->
+  <div class="stage">
+    <div class="stage-h"><div class="stage-n" style="background:var(--c5)">5</div><h2>學習成果測驗<span class="tag">自我檢核</span></h2></div>
+    <div class="grid" style="margin-bottom:14px">
+      <div class="node" data-id="s5a" style="border-left-color:var(--c5)">
+        <h3><span class="ic">📝</span>全章重點回顧</h3>
+        <p>回顧四大節與 12 個專有名詞，確認品種、數字、流程都能說得出來。</p>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+      <div class="node" data-id="s5b" style="border-left-color:var(--c5)">
+        <h3><span class="ic">✅</span>完成線上測驗</h3>
+        <p>作答下方 15 題並交卷計分，達 70% 通過；未過可對照解析後重作。</p>
+        <div class="links"><a href="#quiz">▶ 前往測驗</a></div>
+        <label class="done"><input type="checkbox">標記完成</label>
+      </div>
+    </div>
+    <div class="quiz" id="quiz">
+      <h2 style="color:var(--navy);margin-bottom:6px">📋 線上複習測驗（15 題）</h2>
+      <p style="font-size:.88rem;color:#4a5468;margin-bottom:8px">每題單選，取自課本真實內容，作答後按「交卷計分」。</p>
+      <div id="qlist"></div>
+      <div class="qbtn"><button class="grade" onclick="gradeQuiz()">交卷計分</button><button class="reset" onclick="resetQuiz()">重新作答</button></div>
+      <div id="score"></div>
+    </div>
+  </div>
+</main>
+<footer>園藝技術教材專案　·　學習歷程：第10章 畜牧　·　內容依課本 p128–178　·　進度儲存於本機瀏覽器</footer>
+<script>
+const JKEY='journey_畜牧_v1';
+const boxes=[...document.querySelectorAll('.node .done input')];
+function loadJ(){let s={};try{s=JSON.parse(localStorage.getItem(JKEY))||{}}catch(e){}
+  boxes.forEach(b=>{const id=b.closest('.node').dataset.id; b.checked=!!s[id];});updateJ();}
+function saveJ(){const s={};boxes.forEach(b=>{s[b.closest('.node').dataset.id]=b.checked});localStorage.setItem(JKEY,JSON.stringify(s));}
+function updateJ(){const d=boxes.filter(b=>b.checked).length,t=boxes.length;
+  document.getElementById('pi').style.width=(d/t*100)+'%';
+  document.getElementById('ptxt').textContent=`已完成 ${d} / ${t} 個節點`;}
+boxes.forEach(b=>b.addEventListener('change',()=>{saveJ();updateJ();}));
+function resetJ(){localStorage.removeItem(JKEY);boxes.forEach(b=>b.checked=false);updateJ();}
+loadJ();
+const QUIZ=[
+ {q:'依課本，經濟動物是指？',o:['野生保育類動物','經人類馴養、可大量繁殖並遺傳優良性能、具經濟價值的動物','只用於比賽的動物','無經濟用途的寵物'],a:1,e:'課本定義：經人類馴服飼養、可大量繁殖並將優良性能遺傳後代、具重大經濟價值者，即經濟動物。'},
+ {q:'台灣市場約 94% 的蛋雞是哪種雞的雜交後裔？',o:['紅羽土雞','烏骨雞','白色來航雞','蘆花雞'],a:2,e:'課本：台灣市場 94% 蛋雞為白色來航雞不同品系雜交後裔，來航雞產白殼蛋、為蛋用種最優秀者。'},
+ {q:'三品種雜交豬 LYD 的終端公豬是哪一品種？',o:['藍瑞斯','約克夏','杜洛克','桃園豬'],a:2,e:'課本：藍瑞斯為母系，杜洛克（Duroc，紅棕毛）為三品種雜交的終端公豬。'},
+ {q:'下列哪種動物「不是」反芻動物？',o:['牛','羊','鹿','豬'],a:3,e:'課本：牛、羊、鹿為偶蹄反芻、有複胃四部分；豬為偶蹄、非反芻、多胎動物。'},
+ {q:'反芻動物的複胃四部分，何者又稱「真胃」？',o:['瘤胃','蜂巢胃','重瓣胃','皺胃'],a:3,e:'課本：複胃分瘤胃、蜂巢胃、重瓣胃、皺胃（或稱真胃）。'},
+ {q:'禽畜六大營養素中，每單位能量約為碳水化合物 2.25 倍的是？',o:['蛋白質','脂類','維生素','礦物質'],a:1,e:'課本：脂類每單位重量所含能量為碳水化合物的 2.25 倍，是主要能量來源。'},
+ {q:'被稱為「牧草之后」、蛋白質含量最高的豆科牧草是？',o:['狼尾草','盤固草','苜蓿','尼羅草'],a:2,e:'課本：苜蓿為羽狀三小葉，蛋白質含量最高，有「牧草之后」之稱；豆科根部有根瘤菌固游離氮。'},
+ {q:'家禽種蛋胚胎發育的臨界溫度是多少？',o:['10℃','18.3℃','23.9℃','37.5℃'],a:2,e:'課本：家禽種蛋胚胎發育臨界溫度為 23.9℃，須保存於此溫度之下以免加速發育。'},
+ {q:'依課本表10-3，下列家禽孵化天數何者正確？',o:['雞 28 天','鴨 21 天','鵝 30 天','鴕鳥 21 天'],a:2,e:'課本表10-3：雞21、鴨/火雞28、鵝30、番鴨35、鴕鳥42天。'},
+ {q:'家禽畜中精液量最多的是？',o:['牛','豬','山羊','兔'],a:1,e:'課本：豬的精液量為 250 毫升，是所有家禽、家畜中最多的。'},
+ {q:'依課本表10-6，豬、牛、羊的懷孕天數相加（114+280+150）等於？',o:['455','544','608','520'],a:1,e:'課本表10-6：豬114、牛280、羊150，相加為 544 天（此為課本原題）。'},
+ {q:'牛的飼料中添加尿素，主要是部分代替哪種營養成分？',o:['蛋白質','脂肪','礦物質','碳水化合物'],a:0,e:'課本：尿素含氮>46%，牛瘤胃細菌可將氮代謝合成胺基酸，故可代替部分蛋白質（添加量需限制以免中毒）。'},
+ {q:'生物安全防治中，牧場糞污「三段式」處理的正確順序是？',o:['好氣發酵→厭氣發酵→固液分離','固液分離→厭氣發酵→好氣發酵','厭氣發酵→固液分離→好氣發酵','固液分離→好氣發酵→厭氣發酵'],a:1,e:'課本：台灣廢水三段式處理依序為固液分離→厭氣發酵→好氣發酵。'},
+ {q:'依課本，仔豬出生後注射鐵劑的目的與劑量是？',o:['防貧血，100～150 毫克','催情，50 毫克','消毒，10 毫克','去勢，200 毫克'],a:0,e:'課本：鐵為血紅素形成必要元素，仔豬體內鐵少，需肌肉注射鐵劑 100～150 毫克以防貧血。'},
+ {q:'下列禽畜體溫，課本記載何者正確？',o:['雞 38.5℃','豬 39.2℃','乳牛 41℃','馬 41.7℃'],a:1,e:'課本：馬38.7℃、乳牛38.6℃、豬39.2℃、雞41.7℃；雞體溫最高（約41℃）。'},
+];
+const ql=document.getElementById('qlist');let picked=Array(QUIZ.length).fill(-1),locked=false;
+QUIZ.forEach((it,qi)=>{const d=document.createElement('div');d.className='q';
+ d.innerHTML=`<div class="qt">${qi+1}. ${it.q}</div>`+it.o.map((o,oi)=>`<label class="opt" data-q="${qi}" data-o="${oi}">${'ABCD'[oi]}. ${o}</label>`).join('')+`<div class="exp" id="e${qi}">✔ ${it.e}</div>`;
+ ql.appendChild(d);});
+ql.addEventListener('click',e=>{const l=e.target.closest('.opt');if(!l||locked)return;
+ const qi=+l.dataset.q,oi=+l.dataset.o;picked[qi]=oi;
+ [...ql.querySelectorAll(`.opt[data-q="${qi}"]`)].forEach(x=>x.classList.remove('sel'));l.classList.add('sel');});
+function gradeQuiz(){if(locked)return;let sc=0;
+ QUIZ.forEach((it,qi)=>{const opts=[...ql.querySelectorAll(`.opt[data-q="${qi}"]`)];
+  opts.forEach((o,oi)=>{if(oi===it.a)o.classList.add('correct');
+   if(picked[qi]===oi&&oi!==it.a)o.classList.add('wrong');});
+  if(picked[qi]===it.a)sc++;document.getElementById('e'+qi).style.display='block';});
+ locked=true;const pct=Math.round(sc/QUIZ.length*100);const el=document.getElementById('score');
+ el.style.display='block';const pass=pct>=70;
+ el.style.background=pass?'#e9f9ef':'#fdeeea';el.style.color=pass?'#0b6b3a':'#a5311c';
+ el.textContent=`得分 ${sc}/${QUIZ.length}（${pct}%）— ${pass?'通過！畜牧觀念紮實 🐄':'再接再厲，對照解析後重作一次'}`;
+ el.scrollIntoView({behavior:'smooth'});}
+function resetQuiz(){locked=false;picked=Array(QUIZ.length).fill(-1);
+ [...ql.querySelectorAll('.opt')].forEach(o=>o.classList.remove('sel','correct','wrong'));
+ [...ql.querySelectorAll('.exp')].forEach(x=>x.style.display='none');
+ document.getElementById('score').style.display='none';}
+</script>
+</body></html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>種蛋孵化 — 深度研究報告</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.75}
+nav.top{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;flex-wrap:wrap;gap:8px}
+nav.top .brand{font-weight:700;font-size:1.05rem}
+nav.top .links{display:flex;gap:18px}
+nav.top a{color:#cdd8ef;text-decoration:none;font-size:.92rem}
+nav.top a:hover{color:#fff}
+nav.top .meta{font-size:.72rem;color:#9fb0d6;text-align:right;line-height:1.4}
+.banner{background:linear-gradient(135deg,var(--navy2),var(--accent));color:#fff;padding:38px 26px}
+.banner h1{font-size:1.9rem;margin-bottom:10px}
+.banner p{max-width:900px;font-size:1.02rem;color:#eaf1ff}
+main{max-width:1000px;margin:0 auto;padding:26px 18px}
+section.page{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-bottom:26px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+h2.pt{color:var(--navy2);font-size:1.4rem;border-left:6px solid var(--accent);padding-left:12px;margin-bottom:16px}
+h3{color:var(--navy);margin:18px 0 8px;font-size:1.12rem}
+.def{background:#eef4fc;border:1px solid #cfe0f5;border-radius:10px;padding:16px 18px;margin:12px 0}
+.quote{border-left:4px solid var(--teal);background:#f0fbf9;padding:10px 16px;margin:12px 0;color:#0f3d38;font-style:italic}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy2);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card .ic{font-size:1.5rem;color:var(--accent)}
+.card h4{color:var(--navy2);margin:6px 0}
+ol.steps{margin:12px 0 12px 20px}
+ol.steps li{margin-bottom:8px}
+.warn{background:#fff4f2;border:1px solid #f3c4bb;border-left:5px solid #d64524;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok{background:#f0fbf4;border:1px solid #bfe6cd;border-left:5px solid #1a9d54;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok ul,.warn ul{margin-left:18px}
+.refs{font-size:.86rem}
+.refs li{margin-bottom:8px}
+.tag{display:inline-block;background:#e7eefb;color:var(--navy2);border-radius:6px;padding:1px 8px;font-size:.74rem;margin-right:6px}
+@media print{nav.top{position:static}section.page{page-break-after:always;box-shadow:none}}
+</style></head>
+<body>
+<nav class="top">
+  <div class="brand">種蛋孵化</div>
+  <div class="links"><a href="#page1">定義與起源</a><a href="#page2">核心架構與流程</a><a href="#page3">實戰・風險・資源</a></div>
+  <div class="meta">整理日期：2026-07-09<br>參考來源：8 篇</div>
+</nav>
+<div class="banner"><h1>種蛋孵化管理（Egg Incubation Management）</h1>
+<p>種蛋孵化，就是用孵化器「模擬母雞抱窩」的一整套技術——把一顆受精蛋，透過精準的控溫、控濕、翻蛋與照蛋，穩穩地變成一隻健康雛禽。溫度差1℃、濕度不對、忘了翻蛋，都可能讓整批心血付諸流水。這份報告帶你看懂雞21天孵化的每一個關鍵數字與動作。</p></div>
+<main>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page" id="page1"><h2 class="pt">一、定義與起源</h2>
+
+<div class="def">
+<h3>什麼是種蛋？什麼是孵化管理？</h3>
+<p><strong>種蛋（hatching egg）</strong>是經公母禽交配、內含<strong>受精胚胎</strong>、可孵化出下一代雛禽的蛋，和我們吃的「商品蛋」不同——市售食用蛋通常未受精，放進孵化器也孵不出小雞。<strong>孵化管理</strong>則是從「收蛋 → 保存 → 消毒 → 入孵 → 翻蛋 → 照蛋 → 出雛」這條流程中，對<strong>溫度、濕度、翻蛋、通風與衛生</strong>所做的全面控制，目標是把<strong>孵化率</strong>（受精蛋孵出雛禽的比率）拉到最高。</p>
+</div>
+
+<h3>為什麼一定要控溫、控濕？</h3>
+<p>禽類胚胎是<strong>「體外發育」</strong>——蛋離開母體後，完全靠孵化器提供的熱量與水氣才能繼續長大。母雞體溫約40–41℃，蛋在體內時胚胎就已開始發育；一產下、溫度驟降，發育便會停下來。所以孵化管理的本質，就是<strong>「用機器接手母雞的體溫與抱窩動作」</strong>：</p>
+<ul style="margin-left:20px">
+<li><strong>溫度</strong>供給胚胎發育所需的熱：太低發育停滯、太高胚胎死亡，只有落在正確區間才能順利孵化。</li>
+<li><strong>濕度</strong>控制蛋內水分散失：孵化期需適度失水讓「氣室」變大，供雛禽破殼前呼吸；發生期則要提高濕度，避免蛋殼膜變乾把雛禽黏住。</li>
+</ul>
+
+<div class="quote">「種蛋胚胎發育臨界溫度為 23.9℃，須保存於此溫度以下；1週內孵化保存 18.3℃，超過1週保存 10–13℃。保存與孵化時蛋鈍端朝上垂直放置。」——《農業概論下冊》第10章 畜牧・10-2 孵化（p151–152）</div>
+
+<h3>關鍵名詞速覽</h3>
+<table>
+<tr><th>名詞</th><th>白話說明</th><th>好記比喻</th></tr>
+<tr><td>種蛋</td><td>內含受精胚胎、可孵出雛禽的蛋</td><td>會長成小雞的「蛋寶寶」</td></tr>
+<tr><td>臨界溫度 23.9℃（生理零點）</td><td>胚胎開始／停止發育的分界溫度</td><td>胚胎的「暫停鍵」</td></tr>
+<tr><td>孵化率</td><td>受精蛋能孵出雛禽的比率</td><td>孵化場的「成績單」</td></tr>
+<tr><td>氣室</td><td>蛋鈍端內的空氣囊，供破殼前呼吸</td><td>雛禽的「氧氣瓶」</td></tr>
+</table>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page" id="page2"><h2 class="pt">二、核心架構與流程</h2>
+
+<h3>五大關鍵環節（點卡片記重點）</h3>
+<div class="cards">
+  <div class="card"><div class="ic">◆</div><h4>種蛋保存</h4><p>臨界溫度 <strong>23.9℃</strong> 以下保存：1週內 <strong>18.3℃</strong>、超過1週 <strong>10–13℃</strong>；蛋<strong>鈍端朝上</strong>垂直放置。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>孵化期(1–18天)</h4><p>胚胎發育長大：<strong>37.5–37.8℃</strong>、濕度 <strong>55–60%</strong>，每天翻蛋4–6次。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>發生期(18–21天)</h4><p>準備破殼出雛：<strong>36.1–37.2℃</strong>、濕度 <strong>70–75%</strong>，<strong>停止翻蛋</strong>、少開門。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>翻蛋</h4><p>前後或左右各 <strong>45°</strong>、每天 <strong>4–6次</strong>；使胚胎受熱均勻、防止與蛋殼膜相連。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>檢蛋（照蛋）</h4><p>第 <strong>4–6日、12日、18日</strong> 共三次，用強光透視、去除無精蛋與終止蛋。</p></div>
+</div>
+
+<h3>孵化操作標準流程（以雞21天為例）</h3>
+<ol class="steps">
+  <li><strong>選蛋</strong>：收集受精、新鮮、蛋殼完整清潔的種蛋，剔除破損、畸形、髒污蛋。</li>
+  <li><strong>保存</strong>：依入孵時程，維持18.3℃（1週內）或10–13℃（超過1週），鈍端朝上。</li>
+  <li><strong>消毒</strong>：入孵前以<strong>過錳酸鉀＋福爾馬林</strong>產生<strong>甲醛氣體</strong>燻煙消毒，之後充分排氣。</li>
+  <li><strong>入孵</strong>：設定孵化期溫濕度（37.5–37.8℃／55–60%）。</li>
+  <li><strong>翻蛋</strong>：每天4–6次，前後或左右各45°（第1–18天）。</li>
+  <li><strong>照蛋</strong>：第4–6日、第12日、第18日檢蛋，淘汰無精蛋與終止蛋。</li>
+  <li><strong>發生期</strong>：第18天起停止翻蛋、溫度略降到36.1–37.2℃、濕度提高到70–75%。</li>
+  <li><strong>出雛</strong>：第21天雛禽自行破殼，讓牠自己出殼、勿硬剝；出雛後移入育雛保溫設備。</li>
+</ol>
+
+<h3>表10-3　各家禽孵化天數對照</h3>
+<table>
+<tr><th>家禽</th><th>雞</th><th>鴨</th><th>火雞</th><th>鵝</th><th>番鴨</th><th>鴕鳥</th></tr>
+<tr><td>孵化天數</td><td>21 天</td><td>28 天</td><td>28 天</td><td>30 天</td><td>35 天</td><td>42 天</td></tr>
+</table>
+<p style="font-size:.9rem;color:#556">體型越大、胚胎發育越久，孵化天數越長（雞最短21天、鴕鳥最長42天）。不同家禽需分開孵化，不可用同一套時程混孵。</p>
+
+<h3>孵化期 vs 發生期　溫濕度對照</h3>
+<table>
+<tr><th>階段</th><th>天數</th><th>溫度</th><th>相對濕度</th><th>翻蛋</th><th>任務</th></tr>
+<tr><td>孵化期</td><td>第1–18天</td><td>37.5–37.8℃</td><td>55–60%</td><td>每天4–6次</td><td>胚胎發育長大</td></tr>
+<tr><td>發生期</td><td>第18–21天</td><td>36.1–37.2℃</td><td>70–75%</td><td>停止翻蛋</td><td>定位、破殼出雛</td></tr>
+</table>
+
+<div class="quote">「蛋溫降至24℃以下時胚發育受阻，即胚的生理零點；此並非絕對值，在約10℃時才能將胚發育降至最低。」——農業部農業知識入口網《種蛋儲存及孵化管理實務》，林義福</div>
+</section>
+
+<!-- ===================== PAGE 3 ===================== -->
+<section class="page" id="page3"><h2 class="pt">三、實戰・風險・資源</h2>
+
+<h3>實戰重點：照蛋怎麼判、為什麼要去壞蛋？</h3>
+<div class="cards">
+  <div class="card"><div class="ic">○</div><h4>清澈無血管</h4><p>＝<strong>無精蛋</strong>（未受精）。移除，否則久放腐敗。</p></div>
+  <div class="card"><div class="ic">◑</div><h4>紅色血環</h4><p>＝<strong>終止蛋</strong>（胚胎中途死亡）。移除，避免污染。</p></div>
+  <div class="card"><div class="ic">●</div><h4>放射狀血管／暗影會動</h4><p>＝<strong>活胚</strong>，放回孵化器繼續孵化。</p></div>
+</div>
+<p style="font-size:.92rem;color:#556">壞蛋若留在孵化器中會腐敗、產氣甚至爆裂，污染其他健康種蛋——這就是課本要求在第4–6日、12日、18日<strong>去除無精蛋與終止蛋</strong>的原因。</p>
+
+<div class="warn">
+<h3>⚠ 紅色警示：這些錯誤會讓整批孵化失敗</h3>
+<ul>
+<li><strong>保存溫度高於臨界溫度23.9℃</strong>：夏天室溫常超過24℃，胚胎斷斷續續半發育又中斷，孵化率崩跌。</li>
+<li><strong>失溫或溫度失控</strong>：溫度過高→胚胎死亡、畸形、早出弱雛；過低→發育遲緩、出雛不齊。差1℃就可能致命。</li>
+<li><strong>發生期濕度不足</strong>：蛋殼膜變乾變硬，雛禽被黏住無法破殼（俗稱「乾殼」），悶死在殼內。</li>
+<li><strong>忘記翻蛋或發生期還在翻蛋</strong>：前段忘翻→胚胎黏殼死亡；後段亂翻→干擾雛禽定位破殼。</li>
+<li><strong>全程不照蛋</strong>：無精蛋、死胚留在器內腐敗爆裂，污染整批好蛋。</li>
+<li><strong>不同家禽混孵</strong>：雞21天、鴨28天、鵝30天…時程與溫濕度衝突，必然失敗。</li>
+</ul>
+</div>
+
+<div class="ok">
+<h3>✓ 綠色實作檢查清單：孵化每日自我檢查</h3>
+<ul>
+<li>✓ 種蛋受精、新鮮、蛋殼完整清潔，鈍端朝上擺放</li>
+<li>✓ 保存溫度正確（1週內18.3℃／超過1週10–13℃），低於臨界23.9℃</li>
+<li>✓ 入孵前已用甲醛氣體燻煙消毒並排氣</li>
+<li>✓ 孵化期維持37.5–37.8℃、濕度55–60%</li>
+<li>✓ 每天翻蛋4–6次，前後或左右各45°</li>
+<li>✓ 第4–6日、第12日、第18日照蛋，去無精蛋與終止蛋</li>
+<li>✓ 第18天進入發生期：停止翻蛋、濕度提高到70–75%、溫度略降</li>
+<li>✓ 依表10-3對照孵化天數，不同家禽分開孵化</li>
+<li>✓ 出雛讓雛禽自行破殼，備妥育雛保溫設備</li>
+</ul>
+</div>
+
+<h3>完整參考來源列表（共 8 篇）</h3>
+<ol class="refs">
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・10-2 孵化（種蛋保存、臨界溫度23.9℃、燻煙消毒）——本專案教材 PDF 第151–152頁</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章・表10-3 各家禽孵化天數／孵化期與發生期溫濕度、翻蛋、照蛋（第151–152頁）</li>
+<li><span class="tag">台灣官方</span>農業部農業知識入口網《種蛋儲存及孵化管理實務》，林義福 — kmweb.moa.gov.tw/subject/subject.php?id=9506</li>
+<li><span class="tag">台灣官方</span>農業部農業知識入口網《家禽孵化場設置原則》（鴨主題館） — kmweb.moa.gov.tw/subject/subject.php?id=13794</li>
+<li><span class="tag">國際</span>Purina Animal Nutrition《A 21-Day Incubation Guide to Hatch Eggs at Home》，M. Roeder — purinamills.com/chicken-feed/education/detail/hatching-eggs-at-home-a-21-day-guide-for-baby-chicks</li>
+<li><span class="tag">國際</span>FarmKeep《Guide on Incubating Chicken Eggs and Ideal Temperature and Humidity》 — farmkeep.com/farm-guides/care/incubating-chicken-eggs</li>
+<li><span class="tag">國際</span>PoultryKeeper《Candling Eggs: The Ultimate Guide》 — poultrykeeper.com/incubation-brooding/candling-eggs</li>
+<li><span class="tag">台灣實務</span>台灣孵蛋器《孵蛋器使用雞蛋孵化：溫度 濕度 照蛋 加水 出雛疑問》 — shope.com.tw/620</li>
+</ol>
+</section>
+</main></body></html>

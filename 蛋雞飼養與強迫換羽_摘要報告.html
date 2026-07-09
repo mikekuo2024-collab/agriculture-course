@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>蛋雞飼養與強迫換羽 — 深度研究報告</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.75}
+nav.top{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;flex-wrap:wrap;gap:8px}
+nav.top .brand{font-weight:700;font-size:1.05rem}
+nav.top .links{display:flex;gap:18px}
+nav.top a{color:#cdd8ef;text-decoration:none;font-size:.92rem}
+nav.top a:hover{color:#fff}
+nav.top .meta{font-size:.72rem;color:#9fb0d6;text-align:right;line-height:1.4}
+.banner{background:linear-gradient(135deg,var(--navy2),var(--accent));color:#fff;padding:38px 26px}
+.banner h1{font-size:1.9rem;margin-bottom:10px}
+.banner p{max-width:900px;font-size:1.02rem;color:#eaf1ff}
+main{max-width:1000px;margin:0 auto;padding:26px 18px}
+section.page{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-bottom:26px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+h2.pt{color:var(--navy2);font-size:1.4rem;border-left:6px solid var(--accent);padding-left:12px;margin-bottom:16px}
+h3{color:var(--navy);margin:18px 0 8px;font-size:1.12rem}
+.def{background:#eef4fc;border:1px solid #cfe0f5;border-radius:10px;padding:16px 18px;margin:12px 0}
+.quote{border-left:4px solid var(--teal);background:#f0fbf9;padding:10px 16px;margin:12px 0;color:#0f3d38;font-style:italic}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy2);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card .ic{font-size:1.5rem;color:var(--accent)}
+.card h4{color:var(--navy2);margin:6px 0}
+ol.steps{margin:12px 0 12px 20px}
+ol.steps li{margin-bottom:8px}
+.warn{background:#fff4f2;border:1px solid #f3c4bb;border-left:5px solid #d64524;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok{background:#f0fbf4;border:1px solid #bfe6cd;border-left:5px solid #1a9d54;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok ul,.warn ul{margin-left:18px}
+.timeline{border-left:3px solid var(--accent);margin:14px 0 14px 8px;padding-left:16px}
+.timeline .tl{margin-bottom:12px}
+.timeline .yr{font-weight:700;color:var(--accent)}
+.refs{font-size:.86rem}
+.refs li{margin-bottom:8px}
+.tag{display:inline-block;background:#e7eefb;color:var(--navy2);border-radius:6px;padding:1px 8px;font-size:.74rem;margin-right:6px}
+@media print{nav.top{position:static}section.page{page-break-after:always;box-shadow:none}}
+</style></head>
+<body>
+<nav class="top">
+  <div class="brand">蛋雞飼養與強迫換羽</div>
+  <div class="links"><a href="#page1">定義與起源</a><a href="#page2">核心架構與流程</a><a href="#page3">實戰・風險・資源</a></div>
+  <div class="meta">整理日期：2026-07-09<br>參考來源：12 篇</div>
+</nav>
+<div class="banner"><h1>蛋雞飼養與強迫換羽（Layer Management &amp; Forced Molting）</h1>
+<p>一隻母雞從小雞到下蛋，要走過「育雛→育成→產蛋」的旅程；蛋農則靠「換飼料、調光照」把產蛋量推到最高。當母雞產能下滑或蛋價低迷，「強迫換羽」讓老母雞休息一輪再重新產蛋——這項技術能延長母雞使用年限，卻也牽動動物福利的爭議。本報告依課本數字為準，並中性呈現產業與友善飼養兩方觀點。</p></div>
+<main>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page" id="page1"><h2 class="pt">一、定義與起源</h2>
+
+<div class="def">
+<h3>什麼是「蛋雞飼養」與「強迫換羽」？</h3>
+<p><strong>蛋雞（Layer）</strong>是專門生產雞蛋的雞，台灣 94% 為白色來航雞的雜交後裔。其一生依「日齡／週齡」與「產蛋率」分為育雛、育成、產蛋三階段。<strong>強迫換羽（Forced / Induced Molting）</strong>則是<strong>人為以特定手段，讓已過產蛋高峰的母雞在較短時間內褪換羽毛、暫停產蛋，休養後再重新產蛋</strong>的技術。用生活化比喻：就像讓一位長跑選手<strong>中場休息、換上新跑鞋</strong>，再跑第二段——目的是延長「上場時間」，但休息的方式若太激烈（斷食斷水），就會傷到選手本身。</p>
+</div>
+
+<div class="quote">「雞在秋天因日照減少會自然換羽並停止產蛋，約需 3 個月；採強迫換羽可縮短為 2 個月，以延長母雞使用年限，或於蛋價低靡時待回升期使雞群處於高產狀態。」——《農業概論下冊》第10章 畜牧（p160）</div>
+
+<h3>蛋雞的一生：產蛋週期時間軸</h3>
+<div class="timeline">
+  <div class="tl"><span class="yr">0 日齡</span>　小雞孵化，育雛保溫；7～10 日齡剪喙（上喙 1/3、下喙 1/4）、預防注射。</div>
+  <div class="tl"><span class="yr">約 11 週齡</span>　外購中雞通常於此時進場（自育者續養）。</div>
+  <div class="tl"><span class="yr">105～112 日齡</span>　小雞移入產蛋雞舍，準備開產。</div>
+  <div class="tl"><span class="yr">初產 5%</span>　產蛋率達 5%＝育成期／產蛋期分界；換產蛋雞飼料、給 14 小時光照。</div>
+  <div class="tl"><span class="yr">26～28 週齡</span>　達一生產蛋高峰，光照最高增至 16 小時。</div>
+  <div class="tl"><span class="yr">85 週齡</span>　產蛋率約降至 70%；一路可連續產蛋約 63 週，此時考慮汰換或強迫換羽。</div>
+</div>
+
+<h3>相關概念對照表</h3>
+<table>
+<tr><th>概念</th><th>白話說明</th><th>好記比喻</th></tr>
+<tr><td>蛋雞 Layer</td><td>專門下蛋的母雞（台灣多為白來航雜交）</td><td>「產蛋專員」</td></tr>
+<tr><td>初產 5% 分界</td><td>產蛋率達 5%＝進入產蛋期，換料調光的訊號</td><td>產蛋的「發令槍」</td></tr>
+<tr><td>自然換羽</td><td>秋天日照變短，母雞慢慢褪羽停產（約 3 個月）</td><td>季節到了「自動放假」</td></tr>
+<tr><td>強迫換羽</td><td>人為手段誘導快速換羽（約 2 個月）再產蛋</td><td>被安排「中場休息」</td></tr>
+</table>
+<p style="font-size:.85rem;color:#556"><span class="tag">教材依據</span>本頁蛋雞週期與強迫換羽定義出自《農業概論下冊》第10章 p160；剪喙出自 p159。</p>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page" id="page2"><h2 class="pt">二、核心架構與流程</h2>
+
+<h3>三大管理支柱：分界 × 光照 × 換羽</h3>
+<div class="cards">
+  <div class="card"><div class="ic">①</div><h4>產蛋期分界（初產 5%）</h4><p>產蛋率首次達 <strong>5%</strong> 即為育成期／產蛋期分界：<strong>改餵產蛋雞飼料</strong>，同步給予 <strong>14 小時</strong>光照。用「產蛋率」抓時機，比只看日齡更準。</p></div>
+  <div class="card"><div class="ic">②</div><h4>光照管理（14→16 小時）</h4><p>蛋雞是<strong>長光照禽類</strong>。開產給 14 小時，高峰增至 <strong>16 小時</strong>；原則<strong>只增不減</strong>、每週漸增約 1 小時，避免輸卵管外翻。目的：提高產蛋量。</p></div>
+  <div class="card"><div class="ic">③</div><h4>強迫換羽（3→2 個月）</h4><p>老母雞產能下滑或蛋價低迷時，人為誘導換羽：把自然的 <strong>3 個月</strong>縮短為 <strong>2 個月</strong>，延長使用年限、調節產量。</p></div>
+</div>
+
+<div class="def">
+<h3>強迫換羽的四種方法（課本 p160）</h3>
+<p>四種方法的共同原理都是「<strong>打斷母雞的營養與激素平衡，使其停產、褪羽</strong>」，休養後恢復飼養再產蛋。國際上分為<strong>禁食類</strong>（斷食斷水）與<strong>非禁食類</strong>（改變營養或光照）兩路線。</p>
+</div>
+<div class="cards">
+  <div class="card"><div class="ic">◆</div><h4>斷食斷水法</h4><p>停料（有時連水也停）1～2 週或更久，急遽改變激素周期。效果快但緊迫最強，是爭議焦點。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>注射助孕素</h4><p>以荷爾蒙抑制排卵，使母雞停產、誘導換羽。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>飼料添加氧化鋅</h4><p>飼料加高量氧化鋅（ZnO），短期改變食慾與代謝而停產。</p></div>
+  <div class="card"><div class="ic">◆</div><h4>餵飼低鹽飼料</h4><p>降低鈉（鹽）等營養素，使母雞營養不足以維持產蛋而換羽。</p></div>
+</div>
+
+<h3>強迫換羽操作流程</h3>
+<ol class="steps">
+  <li><strong>判斷時機</strong>：母雞產蛋率下滑，或遇蛋價低靡、需調節產量時。</li>
+  <li><strong>誘導停產</strong>：執行斷食／加鋅／低鹽／注射，使母雞停產、開始褪羽（數天～1～2 週）。</li>
+  <li><strong>換羽休養</strong>：舊羽脫落、長新羽（整體約 20～60 天／課本估約 2 個月）。</li>
+  <li><strong>恢復飼養</strong>：逐步恢復正常飼料、飲水與光照。</li>
+  <li><strong>二次產蛋</strong>：母雞重新產蛋。一般以 1～2 次為宜，超過 3 次蛋會變大、殼變薄。</li>
+</ol>
+
+<h3>蛋雞飼養日齡時程表</h3>
+<table>
+<tr><th>階段</th><th>日齡／週齡</th><th>關鍵管理</th></tr>
+<tr><td>育雛期</td><td>0～約 6 週</td><td>保溫；7～10 日齡剪喙、預防注射</td></tr>
+<tr><td>育成期（中雞）</td><td>約 6 週～15 週</td><td>長骨架體重；外購中雞約 11 週齡進場</td></tr>
+<tr><td>移入產蛋雞舍</td><td>105～112 日齡</td><td>準備開產</td></tr>
+<tr><td>初產（分界）</td><td>產蛋率達 5%</td><td>換產蛋料、給 14 小時光照</td></tr>
+<tr><td>產蛋高峰</td><td>26～28 週齡</td><td>光照最高增至 16 小時</td></tr>
+<tr><td>產蛋末期</td><td>約 85 週齡</td><td>產蛋率約 70%；連續產蛋約 63 週；考慮汰換或換羽</td></tr>
+</table>
+
+<h3>自然換羽 vs 強迫換羽對照表</h3>
+<table>
+<tr><th>項目</th><th>自然換羽</th><th>強迫換羽</th></tr>
+<tr><td>觸發原因</td><td>秋天日照減少</td><td>人為手段（斷食斷水／加鋅／低鹽／注射／縮光）</td></tr>
+<tr><td>所需時間</td><td>約 3 個月</td><td>約 2 個月（個案 20～60 天）</td></tr>
+<tr><td>主導者</td><td>母雞生理節律</td><td>飼養者</td></tr>
+<tr><td>目的</td><td>生理更新羽毛</td><td>延長使用年限、調節產量、待蛋價回升</td></tr>
+<tr><td>動物福利</td><td>相對緩和</td><td>緊迫較大，斷食法爭議最高</td></tr>
+</table>
+
+<div class="quote">「若要雞暫時休息不生蛋，可將飼糧減量供給……雞毛會掉落，此種方法叫強制換羽，時間週期約為 20～60 天。」——農傳媒【談雞說蛋】之三（中央畜產會前行政組長 林興誠）</div>
+</section>
+
+<!-- ===================== PAGE 3 ===================== -->
+<section class="page" id="page3"><h2 class="pt">三、實戰・風險・資源</h2>
+
+<h3>爭議的兩端：產業效益 vs 動物福利</h3>
+<div class="cards">
+  <div class="card"><div class="ic">▶</div><h4>產業立場</h4><p>強迫換羽可延長母雞使用年限、省下重新育成新雞的時間與成本，並在蛋價波動時調節產量、穩定供給。是傳統格子籠飼養常見手段。</p></div>
+  <div class="card"><div class="ic">▶</div><h4>福利質疑</h4><p>斷食斷水讓母雞飢餓緊迫、掉重甚至死亡；免疫力下降、沙門氏菌風險上升。多國已立法限制或禁止。</p></div>
+  <div class="card"><div class="ic">▶</div><h4>制度解方</h4><p>友善飼養（平飼、放牧、豐富籠）與更好的產銷調節，可減少倚賴斷食延命。呼應歐盟 2027 逐步禁籠趨勢。</p></div>
+</div>
+
+<div class="def">
+<h3>友善飼養與「五章三詞」</h3>
+<p>台灣蛋雞約 <strong>90% 為格子籠</strong>飼養（3～4 隻擠在約 A4 大小籠中）。國際認定<strong>放牧、平飼、豐富籠</strong>為友善系統。消費者認明<strong>「五章三詞」</strong>即可買到動福蛋：<strong>三詞</strong>＝平飼／放牧／豐富籠（依《食安法》唯友善生產可標示）；<strong>五章</strong>＝人道、友善畜產、友善雞蛋聯盟、動物福利標章、友善生產。目前符合國家動福標準的雞蛋<strong>不到一成</strong>。</p>
+</div>
+
+<div class="warn">
+<h3>[!] 紅色警示：強迫換羽的風險與常見迷思</h3>
+<ul>
+<li><strong>斷食斷水緊迫大</strong>：母雞體重可降達 <strong>30%</strong>，體弱者耐不過飢餓而死，研究顯示 <strong>3～10% 虛弱死亡</strong>。</li>
+<li><strong>食安風險上升</strong>：換羽使母雞對<strong>沙門氏菌</strong>感受性增加達 <strong>100～1,000 倍</strong>；沙門氏菌為人畜共通傳染病，可經污染雞蛋感染人體。</li>
+<li><strong>骨骼與行為受損</strong>：禁食換羽降低骨骼完整性、骨折增加，並出現搖頭、踱步等刻板行為。</li>
+<li><strong>次數勿過多</strong>：換羽以 1～2 次為宜，<strong>超過 3 次</strong>所產蛋會變大、蛋殼變薄，品質下降。</li>
+<li><strong>破除迷思</strong>：白肉雞 35 日齡達 2.2 公斤是育種、飼料與設施改善的成果，<strong>並非施打生長激素</strong>。</li>
+</ul>
+</div>
+
+<div class="ok">
+<h3>[V] 綠色重點清單：蛋雞飼養必記重點</h3>
+<ul>
+<li>V 小雞 105～112 日齡移入產蛋雞舍；外購中雞約 11 週齡</li>
+<li>V 初產產蛋率達 5% ＝育成期／產蛋期分界，換產蛋料、給 14 小時光照</li>
+<li>V 26～28 週齡達產蛋高峰，光照最高增至 16 小時（只增不減）</li>
+<li>V 85 週齡產蛋率約 70%，可連續產蛋約 63 週</li>
+<li>V 自然換羽約 3 個月；強迫換羽縮短為 2 個月</li>
+<li>V 強迫換羽四法：斷食斷水、注射助孕素、加氧化鋅、餵低鹽飼料</li>
+<li>V 水濂式雞舍克服熱緊迫；剪喙 7～10 日齡（上 1/3、下 1/4）</li>
+<li>V 友善飼養：認明「五章三詞」；台灣約九成仍為格子籠</li>
+</ul>
+</div>
+
+<h3>完整參考來源列表（共 12 篇）</h3>
+<ol class="refs">
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・10-3 禽畜的飼養／蛋雞飼養與產蛋週期（本專案教材 PDF 第160頁）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章・育成期與產蛋期分界（初產 5%）、光照 14～16 小時（第160頁）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章・強迫換羽定義、目的與四種方法（第160頁）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章・水濂式雞舍、剪喙、統進統出、白肉雞 35 日齡 2.2kg（第159頁）</li>
+<li><span class="tag">科普</span>農傳媒（豐年社）《談雞說蛋之三：疫苗防疫及強制換羽》，林興誠，2017/04/18 — agriharvest.tw/archives/22717</li>
+<li><span class="tag">動保</span>台灣動物社會研究會（EAST）《強迫換羽：用惡劣手段逼出低落產能》，2023/05/03 — east.org.tw/action/8674</li>
+<li><span class="tag">動保</span>台灣動物社會研究會《解放蛋雞！讓台灣有更多好蛋》 — east.org.tw/action/1481</li>
+<li><span class="tag">媒體</span>上下游新聞《友善雞蛋標章有幾種？認明「五章三詞」有保障》，2021 — newsmarket.com.tw/blog/159918</li>
+<li><span class="tag">媒體</span>農傳媒《一起來認識動物福利雞蛋，善待雞才有好蛋可以吃》 — agriharvest.tw/archives/12855</li>
+<li><span class="tag">產業</span>行政院農業部畜產試驗所（TLRI）《產蛋期的飼養管理》 — cancer.tlri.gov.tw/management/layer_knw/layer_2.htm</li>
+<li><span class="tag">實務</span>優雞可尋《蛋雞・光照的時間》知識卡 — chicken.tw/card/feeding-management/layers</li>
+<li><span class="tag">報導</span>報導者《蛋說從頭：從種雞到生產，一顆蛋上桌需要多少時間？》 — twreporter.org/a/laying-hens-and-eggs-production</li>
+</ol>
+</section>
+</main></body></html>

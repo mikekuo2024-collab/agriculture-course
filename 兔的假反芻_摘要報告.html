@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>兔的假反芻 — 深度研究報告</title>
+<style>
+:root{--navy:#1a1a2e;--navy2:#2c3e6b;--accent:#1e6fbf;--teal:#0d9488;--line:#dde3ef;--bg:#f4f6fb;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;background:var(--bg);color:#1e2430;line-height:1.75}
+nav.top{position:sticky;top:0;z-index:50;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:10px 22px;flex-wrap:wrap;gap:8px}
+nav.top .brand{font-weight:700;font-size:1.05rem}
+nav.top .links{display:flex;gap:18px}
+nav.top a{color:#cdd8ef;text-decoration:none;font-size:.92rem}
+nav.top a:hover{color:#fff}
+nav.top .meta{font-size:.72rem;color:#9fb0d6;text-align:right;line-height:1.4}
+.banner{background:linear-gradient(135deg,var(--navy2),var(--accent));color:#fff;padding:38px 26px}
+.banner h1{font-size:1.9rem;margin-bottom:10px}
+.banner p{max-width:900px;font-size:1.02rem;color:#eaf1ff}
+main{max-width:1000px;margin:0 auto;padding:26px 18px}
+section.page{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px 28px;margin-bottom:26px;box-shadow:0 2px 10px rgba(20,30,60,.05)}
+h2.pt{color:var(--navy2);font-size:1.4rem;border-left:6px solid var(--accent);padding-left:12px;margin-bottom:16px}
+h3{color:var(--navy);margin:18px 0 8px;font-size:1.12rem}
+.def{background:#eef4fc;border:1px solid #cfe0f5;border-radius:10px;padding:16px 18px;margin:12px 0}
+.quote{border-left:4px solid var(--teal);background:#f0fbf9;padding:10px 16px;margin:12px 0;color:#0f3d38;font-style:italic}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--navy2);color:#fff}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin:14px 0}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+.card .ic{font-size:1.5rem;color:var(--accent)}
+.card h4{color:var(--navy2);margin:6px 0}
+ol.steps{margin:12px 0 12px 20px}
+ol.steps li{margin-bottom:8px}
+.warn{background:#fff4f2;border:1px solid #f3c4bb;border-left:5px solid #d64524;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok{background:#f0fbf4;border:1px solid #bfe6cd;border-left:5px solid #1a9d54;border-radius:10px;padding:14px 16px;margin:12px 0}
+.ok ul,.warn ul{margin-left:18px}
+.timeline{border-left:3px solid var(--accent);margin:14px 0 14px 8px;padding-left:16px}
+.timeline .tl{margin-bottom:12px}
+.timeline .yr{font-weight:700;color:var(--accent)}
+.refs{font-size:.86rem;margin-left:18px}
+.refs li{margin-bottom:8px}
+.tag{display:inline-block;background:#e7eefb;color:var(--navy2);border-radius:6px;padding:1px 8px;font-size:.74rem;margin-right:6px}
+@media print{nav.top{position:static}section.page{page-break-after:always;box-shadow:none}}
+</style></head>
+<body>
+<nav class="top">
+  <div class="brand">兔的假反芻</div>
+  <div class="links"><a href="#page1">定義與起源</a><a href="#page2">核心架構與流程</a><a href="#page3">實戰・風險・資源</a></div>
+  <div class="meta">整理日期：2026-07-09<br>參考來源：11 篇</div>
+</nav>
+<div class="banner"><h1>兔的消化生理與假反芻（Pseudo-rumination）</h1>
+<p>兔子是「單胃、不反芻」的草食動物，卻靠一段特別發達的盲腸把青草發酵成養分，再用「食糞」把營養吃第二次——這套「山寨版反芻」就叫假反芻。牠讓兔子在低營養的青草世界裡，把每一口都榨到極致。</p></div>
+<main>
+
+<!-- ===================== PAGE 1 ===================== -->
+<section class="page" id="page1"><h2 class="pt">一、定義與起源</h2>
+
+<div class="def">
+<h3>兔的消化生理：單胃、不反芻，但盲腸發達</h3>
+<p>教材界定兔為<strong>「草食、不反芻、單胃、盲腸發達可分解粗纖維」</strong>。青草最主要的成分是纖維素，哺乳動物<strong>自己的酵素分解不了</strong>，一定要靠<strong>細菌發酵</strong>。兔子屬於<strong>後腸發酵（hindgut fermenter）</strong>——把纖維送到又大又長的<strong>盲腸</strong>（容量約為胃的 10 倍、占整個消化道約 40%）由菌發酵，取得養分。</p>
+</div>
+
+<div class="def">
+<h3>什麼是假反芻／食糞？</h3>
+<p><strong>假反芻（Pseudo-rumination）</strong>是指兔子雖然<strong>不會像牛一樣把食物吐回嘴巴反芻</strong>，卻用另一招——把自己排出的<strong>軟糞（盲腸便）從肛門直接吃回去</strong>，讓食物「第二次通過腸道」把養分吸乾淨。這個吃盲腸便的行為，學名叫<strong>食糞（Caecotrophy）</strong>。</p>
+</div>
+
+<div class="quote">「兔具『假反芻』行為：白天排出結實完整的糞丸，夜間排出軟糞；夜間排出的軟便由肛門直接攝入口中，以補充維生素 B 群等營養素。」——《農業概論下冊》第10章 畜牧（10-3 禽畜的飼養）</div>
+
+<h3>假反芻 vs 真反芻：差在哪裡？</h3>
+<table>
+<tr><th>比較</th><th>真反芻（牛、羊）</th><th>假反芻（兔）</th></tr>
+<tr><td>胃的構造</td><td>複胃四室（瘤胃等）</td><td>單胃</td></tr>
+<tr><td>發酵位置</td><td>前腸（瘤胃）</td><td>後腸（盲腸）</td></tr>
+<tr><td>再處理方式</td><td>把食團逆嘔回口腔再嚼</td><td>把盲腸便從肛門吃回</td></tr>
+<tr><td>共同目的</td><td colspan="2" style="text-align:center">讓同一份食物被處理兩次，把發酵養分吃進去</td></tr>
+</table>
+
+<h3>觀念小史</h3>
+<div class="timeline">
+  <div class="tl"><span class="yr">早期</span>　學界一度以為「食糞」是兔子獨有的怪癖。</div>
+  <div class="tl"><span class="yr">1964</span>　R. M. Lockley《The Private Life of the Rabbit》專章討論兔的「再攝食（Reingestion）」。</div>
+  <div class="tl"><span class="yr">1981</span>　Hörnicke 發表兔「食糞（caecotrophy）利用盲腸內容物」研究，確立學術名詞。</div>
+  <div class="tl"><span class="yr">現代</span>　獸醫學確認天竺鼠、倉鼠、龍貓等小型草食動物也食糞，並常把 caecotrophy 稱為 pseudo-rumination（假反芻）。</div>
+</div>
+</section>
+
+<!-- ===================== PAGE 2 ===================== -->
+<section class="page" id="page2"><h2 class="pt">二、核心架構與流程</h2>
+
+<h3>三張卡片認識關鍵構造與時機</h3>
+<div class="cards">
+  <div class="card"><div class="ic">①</div><h4>盲腸：發酵工廠</h4><p>兔最大的發酵器官，約占消化道 <strong>40%</strong>，住著大量細菌，把纖維發酵成 <strong>VFA（能量）、維生素 B 群/K、蛋白質</strong>。</p></div>
+  <div class="card"><div class="ic">②</div><h4>硬糞 vs 軟糞</h4><p><strong>硬糞丸</strong>＝乾圓、低營養的「垃圾」，直接排掉；<strong>軟糞（盲腸便/葡萄便）</strong>＝濕黏、裹黏液的「便當」，要吃回去。</p></div>
+  <div class="card"><div class="ic">③</div><h4>食糞時機</h4><p>盲腸便多在兔子<strong>安靜休息時（清晨、傍晚或夜間）</strong>排出，兔子<strong>立即從肛門整串吞下、不咀嚼</strong>，以免弄破保護黏膜。</p></div>
+</div>
+
+<div class="def">
+<h3>結腸分離機制：一條腸子做出兩種糞</h3>
+<p>兔子的結腸有一個叫 <strong>fusus coli（結腸紡錘部）</strong> 的「節律器」，執行<strong>結腸分離機制（CSM）</strong>：<strong>大顆粗纖維</strong>順向送到直腸做成硬糞排掉；<strong>小顆細纖維＋蛋白質</strong>逆向送回盲腸發酵，之後做成軟糞讓兔子吃回。所以硬糞、軟糞是「同一套腸道、依顆粒大小分流」的兩種產物。</p>
+</div>
+
+<h3>食糞循環：一份青草的「17 小時養分之旅」</h3>
+<ol class="steps">
+  <li><strong>進食</strong>：兔子咀嚼青草吞下。</li>
+  <li><strong>前段消化</strong>：經單胃、小腸，好吸收的養分先取走。</li>
+  <li><strong>結腸分流</strong>：粗纖維→硬糞排掉；細纖維→送回盲腸。</li>
+  <li><strong>盲腸發酵</strong>：細菌發酵，產出 VFA、B 群、K、蛋白質（餐後約 4～9 小時盲腸排空）。</li>
+  <li><strong>形成盲腸便</strong>：fusus coli 把盲腸內容做成軟糞，外裹黏液防胃酸。</li>
+  <li><strong>排出＋食入</strong>：餐後約 8 小時排出，兔子直接從肛門吞下。</li>
+  <li><strong>二次吸收</strong>：在胃中續發酵 3～6 小時，再進小腸吸收——距最初進食約 <strong>17 小時</strong>。</li>
+</ol>
+
+<h3>兔 vs 牛 vs 馬 消化對照表</h3>
+<table>
+<tr><th>項目</th><th>牛（真反芻）</th><th>兔（假反芻）</th><th>馬</th></tr>
+<tr><td>蹄型</td><td>偶蹄</td><td>—</td><td>單蹄</td></tr>
+<tr><td>胃</td><td>複胃四室</td><td>單胃</td><td>單胃</td></tr>
+<tr><td>反芻</td><td>有（真反芻）</td><td>無（以食糞代替＝假反芻）</td><td>無</td></tr>
+<tr><td>發酵位置</td><td>前腸（瘤胃）</td><td>後腸（盲腸）</td><td>後腸（盲腸/大結腸）</td></tr>
+<tr><td>是否食糞</td><td>否</td><td><strong>是（吃盲腸便）</strong></td><td>否</td></tr>
+</table>
+<div class="quote">口訣：牛在前腸反芻，兔馬在後腸發酵；兔子多一招食糞（假反芻）。</div>
+</section>
+
+<!-- ===================== PAGE 3 ===================== -->
+<section class="page" id="page3"><h2 class="pt">三、實戰・風險・資源</h2>
+
+<h3>養兔飼養重點與「紙肚」迷思破解</h3>
+<div class="def">
+<p>民間流傳「兔子腸胃像紙一樣脆弱、<strong>喝水會死（紙肚）</strong>」，這是<strong>錯誤謬傳</strong>，課本已明文糾正：<strong>兔子需要喝水</strong>。事實上兔子飲水量<strong>比貓狗還多</strong>——農業部建議每公斤體重每日約 <strong>100 毫升</strong>（3 公斤的兔子約需 300 mL）。主食應是<strong>高纖維乾草/牧草（占 80% 以上）</strong>，蔬菜只占 10～15%，紅蘿蔔僅能少量，並非主食。</p>
+</div>
+
+<div class="warn">
+<h3>⚠ 紅色警示：這些錯誤會害了兔子</h3>
+<ul>
+<li><strong>制止兔子吃盲腸便</strong>：盲腸便是補充 B 群、蛋白質的「營養包」，制止會造成營養不良。</li>
+<li><strong>高澱粉、低纖維飲食</strong>：破壞盲腸菌叢平衡（dysbiosis），引發腹瀉、脹氣、腸道停滯（GI stasis），可能致命。</li>
+<li><strong>相信「紙肚」不給水</strong>：缺水使腸道停滯，非常危險；兔子一定要有乾淨飲水。</li>
+<li><strong>亂餵抗生素</strong>：不當抗生素會殺死盲腸好菌，破壞發酵系統。</li>
+<li><strong>不排便＋不進食卻只觀察</strong>：這是急症；兔子 12 小時完全不進食就非常危急，須立即就醫。</li>
+<li><strong>未絕育公母兔混養</strong>：兔為誘發排卵、受孕率極高，混養極易大量繁殖。</li>
+</ul>
+</div>
+
+<div class="ok">
+<h3>✓ 綠色重點清單：兔子健康照護</h3>
+<ul>
+<li>✓ 主食＝不限量的高纖維乾草/牧草（占 80% 以上）</li>
+<li>✓ 隨時提供乾淨飲水並定期更換（約每公斤 100 mL/日，水碗較受歡迎）</li>
+<li>✓ 蔬菜占 10～15%、水果與點心低於 1%；紅蘿蔔只能少量</li>
+<li>✓ 讓兔子正常食糞，不要制止；觀察屁股是否乾淨</li>
+<li>✓ 每天觀察採食量、飲水量、糞便型態與精神狀態</li>
+<li>✓ 飼養溫度 15～25℃，怕熱（無汗腺）須通風降溫，避免中暑</li>
+<li>✓ 突然食慾下降、排便量減少或無排便，立即就醫</li>
+<li>✓ 滿 4～5 月齡評估絕育，公母分開飼養防意外繁殖</li>
+</ul>
+</div>
+
+<h3>延伸小知識：兔乳與繁殖</h3>
+<p>兔乳<strong>蛋白質高達 13%、脂肪 9% 以上</strong>，營養遠高於牛、豬；仔兔<strong>出生體重僅 1 週即倍增</strong>（陸地活動動物之冠），出生時裸體閉眼、約 2 週開眼。繁殖上兔為<strong>誘發排卵</strong>動物——母兔<strong>交配後約 10 小時內排卵</strong>，未配種的濾泡自行退化。</p>
+
+<h3>完整參考來源列表（共 11 篇）</h3>
+<ol class="refs">
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・p141 家畜品種特徵（兔：草食、不反芻、單胃、盲腸發達可分解粗纖維；馬對照）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・p168（10-3 禽畜的飼養：兔假反芻、白天硬糞/夜間軟糞、補維生素 B 群；兔乳蛋白 13%/脂肪 9%；仔兔裸體閉眼 2 週開眼）</li>
+<li><span class="tag">教材</span>《農業概論下冊》第10章 畜牧・p153（表10-4 發情週期：兔為誘發排卵，交配後 10 小時內排卵）；及兔「紙肚」謬傳說明（兔需要喝水）</li>
+<li><span class="tag">台灣</span>農業部（動物保護資訊網）《兔飼養與照顧指南》—「食糞 Caecotrophy／盲腸便（葡萄便）、刺激性排卵、每公斤 100 mL 飲水」— animal.moa.gov.tw</li>
+<li><span class="tag">國際</span>Wikipedia,《Cecotrope》（結腸分離、fusus coli、17 小時食糞循環、VFA/B 群/K、ISC/dysbiosis/GI stasis）— en.wikipedia.org/wiki/Cecotrope</li>
+<li><span class="tag">國際</span>Oxbow Animal Health,《The Inside Scoop on Rabbit Poops》（盲腸約占消化道 40%、Wash-back CSM、盲腸便形成與再攝食）— oxbowanimalhealth.com/blog/the-inside-scoop-on-rabbit-poops</li>
+<li><span class="tag">國際</span>Vet Help Direct, Laura Waring BVetMed MRCVS,《Why do rabbits and rodents eat their poo? The wonderful world of caecotrophy》（假反芻/後腸發酵、盲腸便成分）— vethelpdirect.com</li>
+<li><span class="tag">國際</span>Merck / MSD Veterinary Manual, Joerg Mayer,《Nutrition of Rabbits》— merckvetmanual.com/exotic-and-laboratory-animals/rabbits/nutrition-of-rabbits</li>
+<li><span class="tag">學術</span>Carlos de Blas &amp; Julian Wiseman (eds.),《Nutrition of the Rabbit》, 2nd ed., CABI, 2010（食糞與後腸發酵營養）</li>
+<li><span class="tag">學術</span>H. Hörnicke (1981),《Utilization of caecal digesta by caecotrophy (soft faeces ingestion) in the rabbit》, Livestock Production Science 8(4):361–366</li>
+<li><span class="tag">學術</span>《Study on the mechanism of induced ovulation in rabbits》, Journal of Animal Science, 2025 — academic.oup.com/jas/article-abstract/doi/10.1093/jas/skaf241</li>
+</ol>
+</section>
+</main></body></html>
