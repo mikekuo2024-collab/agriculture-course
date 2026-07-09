@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- [改1] 遊戲名稱與教材章節 -->
+<title>畜牧拼圖農場 · 農業概論下冊第10章畜牧互動遊戲</title>
+<style>
+:root{
+  --navy:#141a2e; --navy2:#22305c; --accent:#1e6fbf; --amber:#f5a623;
+  --ok:#1f9d55; --no:#c0392b; --line:#dde3ef; --bg:#0e1526; --mut:#5b6878;
+  --card:#ffffff;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:"PingFang TC","Noto Sans TC","Microsoft JhengHei",Arial,sans-serif;
+  background:var(--bg); color:#1f2733; line-height:1.7; min-height:100vh;
+}
+button{font-family:inherit;font-weight:700;border:none;border-radius:26px;
+  padding:12px 30px;font-size:1rem;cursor:pointer;transition:.15s;}
+.btn-main{background:var(--amber);color:#3a2400;box-shadow:0 4px 14px rgba(245,166,35,.4);}
+.btn-main:hover{transform:translateY(-2px);}
+.btn-sub{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.4);}
+.btn-sub.small{padding:7px 16px;font-size:.85rem;}
+.btn-blue{background:var(--accent);color:#fff;}
+.btn-blue:hover{background:#155a9c;}
+.btn-ghost{background:#eef1f7;color:#33455c;}
+.hidden{display:none !important;}
+/* ---------- 開始畫面 ---------- */
+#screen-start{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:30px 18px;
+  background:radial-gradient(circle at 30% 20%, #22305c 0%, #0e1526 65%);color:#fff;}
+#screen-start .logo{font-size:3.2rem;}
+#screen-start h1{font-size:2rem;font-weight:800;margin:10px 0 4px;letter-spacing:2px;}
+#screen-start .sub{color:#9fb4d8;font-size:1rem;margin-bottom:22px;}
+.rulebox{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);
+  border-radius:16px;padding:20px 26px;max-width:580px;text-align:left;font-size:.95rem;
+  color:#dbe6f7;margin-bottom:24px;}
+.rulebox b{color:var(--amber);}
+.rulebox li{margin:6px 0 6px 4px;list-style:none;}
+#nameInput{font-family:inherit;font-size:1rem;padding:11px 18px;border-radius:26px;
+  border:2px solid var(--amber);width:min(300px,80vw);text-align:center;margin-bottom:16px;outline:none;}
+.resume-card{background:rgba(245,166,35,.12);border:1.5px solid var(--amber);
+  border-radius:16px;padding:18px 24px;max-width:580px;margin-bottom:22px;color:#ffe9c4;font-size:.95rem;}
+.resume-card b{color:var(--amber);}
+.resume-card .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px;}
+.saved-note{font-size:.82rem;color:#9fb4d8;margin-top:14px;}
+.players{max-width:580px;margin-top:10px;}
+.players .ptitle{font-size:.85rem;color:#9fb4d8;margin-bottom:6px;}
+.pchip{display:inline-block;margin:4px;padding:7px 14px;border-radius:18px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.25);color:#dbe6f7;font-size:.85rem;cursor:pointer;transition:.15s;}
+.pchip:hover{border-color:var(--amber);color:#ffd479;}
+.pchip b{color:var(--amber);}
+/* ---------- 工坊主畫面 ---------- */
+#screen-game{min-height:100vh;padding-bottom:50px;
+  background:linear-gradient(180deg,#16203d 0%, #1b2a52 55%, #233a6e 100%);}
+.topbar{position:sticky;top:0;z-index:20;display:flex;justify-content:space-between;
+  align-items:center;gap:10px;flex-wrap:wrap;padding:10px 16px;
+  background:rgba(14,21,38,.92);backdrop-filter:blur(4px);
+  border-bottom:1px solid rgba(255,255,255,.12);color:#fff;}
+.topbar .title{font-weight:800;font-size:1.02rem;}
+.topbar .timer{font-weight:800;font-size:1.12rem;color:var(--amber);font-variant-numeric:tabular-nums;}
+.topbar .timer.warn{color:#ff6b5e;animation:blink 1s infinite;}
+.topbar .grp{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+@keyframes blink{50%{opacity:.4;}}
+.hint-banner{max-width:1080px;margin:10px auto 0;padding:0 18px;color:#c9d8f2;font-size:.92rem;text-align:center;}
+.gwrap{max-width:1080px;margin:14px auto 0;padding:0 14px;display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;}
+/* 拼圖板 */
+.board-col{flex:1 1 560px;min-width:320px;}
+#board{position:relative;width:100%;aspect-ratio:3/2;border-radius:14px;overflow:hidden;
+  border:3px solid #3d5490;background:#0b1120;box-shadow:0 10px 30px rgba(0,0,0,.45);}
+#ghost{position:absolute;inset:0;opacity:.13;pointer-events:none;transition:opacity .3s;}
+#ghost.hint{opacity:.34;}
+#ghost svg{width:100%;height:100%;display:block;}
+#cells{position:absolute;inset:0;display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(4,1fr);}
+.cell{position:relative;border:1px dashed rgba(255,255,255,.16);cursor:pointer;transition:.15s;}
+.cell:hover{background:rgba(245,166,35,.10);}
+.cell.filled{border:none;cursor:default;background:none;}
+.cell.filled:hover{background:none;}
+.cell svg{position:absolute;inset:0;width:100%;height:100%;display:block;}
+.cell.pop svg{animation:pop .45s;}
+@keyframes pop{0%{transform:scale(.4);opacity:0;}70%{transform:scale(1.08);}100%{transform:scale(1);opacity:1;}}
+.cell.bad{animation:shake .3s;background:rgba(192,57,43,.35);}
+@keyframes shake{25%{transform:translateX(-5px);}75%{transform:translateX(5px);}}
+.board-tools{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;
+  color:#c9d8f2;font-size:.88rem;flex-wrap:wrap;}
+/* 拼圖片托盤 */
+#tray{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;min-height:74px;padding:8px;
+  background:rgba(255,255,255,.06);border:1.5px dashed rgba(255,255,255,.25);border-radius:12px;}
+.traylbl{width:100%;font-size:.8rem;color:#9fb4d8;}
+.piece{width:64px;height:64px;border-radius:10px;overflow:hidden;cursor:pointer;position:relative;
+  border:2.5px solid rgba(255,255,255,.35);transition:.15s;background:#0b1120;flex:none;}
+.piece svg{width:100%;height:100%;display:block;}
+.piece:hover{transform:translateY(-3px);border-color:#7fc4ff;}
+.piece.sel{border-color:var(--amber);box-shadow:0 0 12px rgba(245,166,35,.8);transform:translateY(-3px);}
+/* 節點卡片 */
+.nodes-col{flex:1 1 300px;min-width:280px;display:flex;flex-direction:column;gap:10px;}
+.ncard{display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.07);
+  border:1.5px solid rgba(255,255,255,.18);border-radius:14px;padding:12px 14px;color:#dbe6f7;
+  cursor:pointer;transition:.15s;}
+.ncard:hover{border-color:#7fc4ff;background:rgba(255,255,255,.11);}
+.ncard .nicon{font-size:1.7rem;flex:none;width:48px;height:48px;border-radius:50%;background:#fff;
+  display:flex;align-items:center;justify-content:center;border:3px solid var(--accent);}
+.ncard .nt{font-weight:800;font-size:.95rem;color:#fff;}
+.ncard .nd{font-size:.78rem;color:#9fb4d8;}
+.ncard.locked{filter:grayscale(1);opacity:.5;cursor:not-allowed;}
+.ncard.done{border-color:var(--ok);}
+.ncard.done .nicon{border-color:var(--ok);background:#e9f9ef;}
+.ncard.done .nt::after{content:" ✔";color:#7ee2a8;}
+.ncard.next .nicon{animation:pulse 1.6s infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(245,166,35,.7);}50%{box-shadow:0 0 0 14px rgba(245,166,35,0);}}
+.ncard.boss .nicon{border-color:var(--amber);}
+/* ---------- 關卡視窗 ---------- */
+#modal{position:fixed;inset:0;background:rgba(8,12,24,.75);z-index:50;display:flex;
+  align-items:center;justify-content:center;padding:14px;}
+.panel{background:var(--card);width:min(680px,96vw);max-height:92vh;overflow-y:auto;
+  border-radius:18px;padding:24px 26px;box-shadow:0 20px 60px rgba(0,0,0,.5);}
+.panel h2{font-size:1.25rem;color:var(--navy);display:flex;align-items:center;gap:8px;}
+.panel .desc{color:var(--mut);font-size:.92rem;margin:6px 0 14px;}
+.progress-dots{display:flex;gap:6px;margin-bottom:14px;}
+.pdot{width:12px;height:12px;border-radius:50%;background:#dde3ef;}
+.pdot.cur{background:var(--amber);}
+.pdot.ok{background:var(--ok);}
+.stem{font-weight:700;font-size:1.05rem;margin-bottom:12px;}
+.stem .tag{font-size:.72rem;background:#fdecea;color:var(--no);border-radius:10px;padding:2px 8px;margin-left:6px;white-space:nowrap;}
+.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 14px;border:1.5px solid #e6eaf4;
+  border-radius:11px;margin:7px 0;cursor:pointer;transition:.15s;font-size:.97rem;}
+.opt:hover{background:#f4f8ff;border-color:#bcd5f2;}
+.opt.correct{background:#e9f9ef;border-color:#57c07f;}
+.opt.wrong{background:#fdecea;border-color:#e78679;animation:shake .3s;}
+.opt.dim{opacity:.5;pointer-events:none;}
+.exp{margin-top:12px;padding:11px 14px;background:#f2f7ff;border-left:4px solid var(--accent);
+  border-radius:8px;font-size:.92rem;color:#33455c;}
+.feedback{margin-top:10px;font-weight:700;}
+.feedback.ok{color:var(--ok);} .feedback.no{color:var(--no);}
+.panel .actions{margin-top:16px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;}
+.piece-award{display:flex;justify-content:center;margin:12px 0;}
+.piece-award .piece{width:96px;height:96px;cursor:default;border-color:var(--amber);
+  box-shadow:0 0 18px rgba(245,166,35,.8);}
+/* 配對遊戲 */
+.match-grid{display:grid;grid-template-columns:1fr 1.6fr;gap:8px;}
+.mitem{padding:9px 12px;border-radius:10px;border:1.5px solid #e6eaf4;cursor:pointer;
+  font-size:.88rem;transition:.15s;background:#fff;}
+.mitem.term{font-weight:700;color:var(--navy2);}
+.mitem:hover{border-color:#bcd5f2;background:#f4f8ff;}
+.mitem.sel{border-color:var(--amber);background:#fff7e8;box-shadow:0 0 0 2px rgba(245,166,35,.35);}
+.mitem.okpair{background:#e9f9ef;border-color:#57c07f;pointer-events:none;color:#25603d;}
+.mitem.flash{background:#fdecea;border-color:#e78679;animation:shake .3s;}
+/* 完成畫面 */
+.final-art{border-radius:12px;overflow:hidden;border:3px solid var(--amber);margin:12px 0;}
+.final-art svg{width:100%;height:auto;display:block;}
+/* 進度檢視 */
+.pv-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem;color:#33455c;margin-bottom:12px;}
+.pv-meta b{color:var(--navy2);}
+.pv-stations{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+.pv-st{font-size:.82rem;padding:5px 12px;border-radius:14px;border:1.5px solid var(--line);color:var(--mut);}
+.pv-st.done{background:#e9f9ef;border-color:#57c07f;color:#25603d;font-weight:700;}
+.pv-st.cur{background:#fff7e8;border-color:var(--amber);color:#8a5a00;font-weight:700;}
+/* ---------- 報告畫面 ---------- */
+#screen-report{min-height:100vh;background:#f4f6fb;padding:0 0 60px;}
+.report-hero{background:linear-gradient(135deg,#141a2e,#22305c 55%,#1e6fbf);color:#fff;
+  padding:34px 20px 30px;text-align:center;}
+.report-hero h1{font-size:1.6rem;font-weight:800;}
+.report-hero .medal{font-size:3rem;margin:6px 0;}
+.report-hero .big{font-size:2.6rem;font-weight:800;color:var(--amber);}
+.report-hero .meta{color:#c9d8f2;font-size:.92rem;margin-top:6px;}
+.rwrap{max-width:820px;margin:0 auto;padding:24px 18px;}
+.rcard{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+  margin-bottom:18px;box-shadow:0 2px 8px rgba(30,40,80,.05);}
+.rcard h2{font-size:1.1rem;color:var(--navy2);margin-bottom:12px;border-left:5px solid var(--amber);
+  padding-left:10px;}
+.bar-row{display:flex;align-items:center;gap:10px;margin:9px 0;font-size:.92rem;}
+.bar-row .bl{flex:0 0 110px;font-weight:700;color:#33455c;}
+.bar-track{flex:1;height:16px;background:#eef1f7;border-radius:9px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:9px;background:linear-gradient(90deg,#1e6fbf,#4da3e8);
+  transition:width .8s;}
+.bar-fill.low{background:linear-gradient(90deg,#c0392b,#e67e6c);}
+.bar-fill.mid{background:linear-gradient(90deg,#f5a623,#ffd479);}
+.bar-row .bv{flex:0 0 88px;text-align:right;font-weight:700;color:var(--navy2);font-variant-numeric:tabular-nums;}
+.wrongitem{border-left:4px solid var(--no);background:#fff7f6;border-radius:8px;
+  padding:10px 14px;margin:8px 0;font-size:.9rem;}
+.wrongitem b{color:var(--no);}
+.wrongitem .we{color:#33455c;margin-top:4px;font-size:.87rem;}
+.advice{border-left:4px solid var(--accent);background:#f2f7ff;border-radius:8px;
+  padding:12px 14px;margin:10px 0;font-size:.93rem;color:#28405e;}
+.advice b{color:var(--accent);}
+.advice a{color:var(--accent);}
+.nextstep{display:flex;gap:10px;align-items:flex-start;margin:10px 0;font-size:.93rem;}
+.nextstep .n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--amber);
+  color:#3a2400;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.85rem;}
+.report-actions{text-align:center;margin-top:8px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+@media print{
+  body{background:#fff;}
+  .report-actions,.topbar{display:none !important;}
+  .report-hero{background:#22305c !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .rcard{box-shadow:none;break-inside:avoid;}
+  #screen-report{padding-bottom:0;}
+}
+@media(max-width:640px){
+  .match-grid{grid-template-columns:1fr 1.35fr;}
+  .bar-row .bl{flex-basis:86px;font-size:.82rem;}
+  .piece{width:52px;height:52px;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 完成圖（SVG 原圖，供拼圖裁切） ═══════════ -->
+<!-- [改2] 完成圖 SVG：依教材主題重繪 <g id="art">
+<rect width="1200" height="800" fill="#101a35"/><rect width="1200" height="800" fill="url(#agBg)"/><rect x="8" y="8" width="184" height="184" rx="18" fill="#e8794b" opacity=".82"/><rect x="8" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="100" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">豬</text><rect x="208" y="8" width="184" height="184" rx="18" fill="#d9a441" opacity=".82"/><rect x="208" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="300" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">牛</text><rect x="408" y="8" width="184" height="184" rx="18" fill="#e0b13a" opacity=".82"/><rect x="408" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="500" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">雞</text><rect x="608" y="8" width="184" height="184" rx="18" fill="#c9843c" opacity=".82"/><rect x="608" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="700" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">鴨</text><rect x="808" y="8" width="184" height="184" rx="18" fill="#d98f5a" opacity=".82"/><rect x="808" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="900" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">鵝</text><rect x="1008" y="8" width="184" height="184" rx="18" fill="#c78b4e" opacity=".82"/><rect x="1008" y="8" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="1100" y="128" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">羊</text><rect x="8" y="208" width="184" height="184" rx="18" fill="#5aa66a" opacity=".82"/><rect x="8" y="208" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="100" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">兔</text><rect x="208" y="208" width="184" height="184" rx="18" fill="#4e9d84" opacity=".82"/><rect x="208" y="208" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="300" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">馬</text><rect x="408" y="208" width="184" height="184" rx="18" fill="#5f9d5a" opacity=".82"/><rect x="408" y="208" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="500" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">鹿</text><rect x="608" y="208" width="184" height="184" rx="18" fill="#f2c14e" opacity=".9"/><rect x="608" y="208" width="184" height="184" rx="18" fill="none" stroke="#fff" stroke-width="6" opacity="0.9"/><text x="700" y="252" text-anchor="middle" font-size="34" fill="#7a4b00">★</text><text x="700" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#3a2400">畜</text><rect x="808" y="208" width="184" height="184" rx="18" fill="#57a06e" opacity=".82"/><rect x="808" y="208" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="900" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">牧</text><rect x="1008" y="208" width="184" height="184" rx="18" fill="#6bae55" opacity=".82"/><rect x="1008" y="208" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="1100" y="328" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">草</text><rect x="8" y="408" width="184" height="184" rx="18" fill="#3f8fbf" opacity=".82"/><rect x="8" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="100" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">蛋</text><rect x="208" y="408" width="184" height="184" rx="18" fill="#3d86b8" opacity=".82"/><rect x="208" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="300" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">孵</text><rect x="408" y="408" width="184" height="184" rx="18" fill="#4a8fc0" opacity=".82"/><rect x="408" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="500" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">精</text><rect x="608" y="408" width="184" height="184" rx="18" fill="#3f95a8" opacity=".82"/><rect x="608" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="700" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">配</text><rect x="808" y="408" width="184" height="184" rx="18" fill="#4694b0" opacity=".82"/><rect x="808" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="900" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">胃</text><rect x="1008" y="408" width="184" height="184" rx="18" fill="#4f9aad" opacity=".82"/><rect x="1008" y="408" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="1100" y="528" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">芻</text><rect x="8" y="608" width="184" height="184" rx="18" fill="#8e5bd8" opacity=".82"/><rect x="8" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="100" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">疫</text><rect x="208" y="608" width="184" height="184" rx="18" fill="#a05bc0" opacity=".82"/><rect x="208" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="300" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">乳</text><rect x="408" y="608" width="184" height="184" rx="18" fill="#9b57b8" opacity=".82"/><rect x="408" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="500" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">喙</text><rect x="608" y="608" width="184" height="184" rx="18" fill="#7d6bd0" opacity=".82"/><rect x="608" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="700" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">糞</text><rect x="808" y="608" width="184" height="184" rx="18" fill="#b05ba0" opacity=".82"/><rect x="808" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="900" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">衛</text><rect x="1008" y="608" width="184" height="184" rx="18" fill="#9d5bb8" opacity=".82"/><rect x="1008" y="608" width="184" height="184" rx="18" fill="none" stroke="#0d1630" stroke-width="3" opacity="0.35"/><text x="1100" y="728" text-anchor="middle" font-family="'Noto Sans TC','PingFang TC',sans-serif" font-size="104" font-weight="900" fill="#f4f8ff">全</text><circle cx="120" cy="620" r="140" fill="#1f9d55" opacity=".06"/><circle cx="1080" cy="180" r="140" fill="#8e5bd8" opacity=".06"/>
+</g>
+<linearGradient id="agBg" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#1b2a52"/><stop offset=".55" stop-color="#16203d"/><stop offset="1" stop-color="#101a35"/>
+</linearGradient>
+</defs>
+</svg>
+
+<!-- ═══════════ 開始畫面 ═══════════ -->
+<!-- [改3] 開始畫面：logo 表情、h1 遊戲名、sub 副標、rulebox 任務敘述（拼圖總片數要同步） -->
+<div id="screen-start">
+  <div class="logo">🧩🐄</div>
+  <h1>畜牧拼圖農場</h1>
+  <div class="sub">農業概論下冊 · 第 10 章 畜牧 · 互動拼圖學習遊戲</div>
+  <div class="rulebox">
+    <li>🧩 <b>任務：</b>農場裡藏著一幅「畜牧農場」神秘拼圖，共 <b>24 片</b>，被 5 個學習節點的農場主人分別保管。</li>
+    <li>🎯 <b>玩法：</b>依學習歷程順序挑戰 5 個節點，<b>每答對一題就得到一片拼圖</b>；把拼圖放回拼圖板正確位置，全部完成再通過「最終挑戰」拿到最後一片！</li>
+    <li>🖼️ <b>放拼圖：</b>先點托盤中的拼圖片，再點拼圖板上的位置；放錯不扣分，看淡淡的底圖提示就能找到家。</li>
+    <li>⏱️ <b>時限：</b>25 分鐘。答錯可以再試，但<b>第一次就答對</b>分數最高。</li>
+    <li>💾 <b>自動存檔：</b>進度以你的<b>學員代號</b>存在這台電腦的瀏覽器，隨時可離開；下次輸入同一代號即可無縫接關。</li>
+    <li>📊 <b>結局：</b>完成拼圖後產生你的<b>學習歷程分析報告</b>與下一步建議，可列印保存。</li>
+  </div>
+  <div id="newGameBox">
+    <input id="nameInput" type="text" maxlength="12" placeholder="輸入你的學員代號"><br>
+    <button class="btn-main" onclick="enter()">🔑 進入畜牧農場</button>
+  </div>
+  <div id="resumeBox"></div>
+  <div id="playersBox"></div>
+  <div class="saved-note">💾 進度只存在這台裝置的瀏覽器（localStorage），不會上傳；同一台電腦、同一個代號即可接關。</div>
+</div>
+
+<!-- ═══════════ 工坊主畫面 ═══════════ -->
+<div id="screen-game" class="hidden">
+  <div class="topbar">
+    <span class="title">🧩 畜牧拼圖農場</span>
+    <div class="grp">
+      <span class="timer" id="timer">25:00</span>
+      <button class="btn-sub small" onclick="showProgress()">📊 我的進度</button>
+      <button class="btn-sub small" onclick="quitGame()">💾 儲存並離開</button>
+    </div>
+  </div>
+  <div class="hint-banner" id="hintBanner"></div>
+  <div class="gwrap">
+    <div class="board-col">
+      <div id="board">
+        <div id="ghost"></div>
+        <div id="cells"></div>
+      </div>
+      <div class="board-tools">
+        <span id="boardCount">已拼 0／24 片</span>
+        <label style="cursor:pointer;user-select:none"><input type="checkbox" id="hintChk" onchange="toggleHint()"> 加強底圖提示</label>
+      </div>
+      <div id="tray"><span class="traylbl">🧰 拼圖托盤（點拼圖片 → 點拼圖板放置）</span></div>
+    </div>
+    <div class="nodes-col" id="nodesCol"></div>
+  </div>
+</div>
+
+<!-- ═══════════ 關卡視窗 ═══════════ -->
+<div id="modal" class="hidden"><div class="panel" id="panel"></div></div>
+
+<!-- ═══════════ 報告畫面 ═══════════ -->
+<div id="screen-report" class="hidden"></div>
+
+<script>
+/* ══════════════ 遊戲資料（題目取自教材題庫，勿改答案） ══════════════ */
+/* [改4] NODES：5 個學習節點（name/icon/area/desc + type:quiz 的 qs 或 type:match 的 pairs）。
+   題目一律沿用題庫 single 題的 stem/opts/ans/exp；配對定義一句話內、唯一指向一個名詞 */
+const NODES=[{"name": "節點① 基本概念", "icon": "🚪", "area": "基本概念", "desc": "農場主人：想拿拼圖，先證明你懂畜牧的基本！每答對一題就給你一片。", "type": "quiz", "qs": [{"stem": "依課本，「經濟動物」是指下列何者？", "opts": ["不具經濟用途的動物", "野生保育類動物", "僅供觀賞的寵物", "經人類馴養、可大量繁殖並遺傳優良性能、具重大經濟價值的動物"], "ans": 3, "exp": "課本：經人類馴服飼養、可大量繁殖並將優良性能遺傳後代、具重大經濟價值者即家禽家畜，又稱經濟動物。"}, {"stem": "下列何者『不是』課本所列的法定家畜？", "opts": ["雞", "兔", "豬", "牛"], "ans": 0, "exp": "法定家畜為豬、牛、羊、鹿、兔、馬；雞屬法定家禽。"}, {"stem": "台灣市場約 94% 的蛋雞是哪種雞的雜交後裔？", "opts": ["烏骨雞", "蘆花雞", "紅羽土雞", "白色來航雞"], "ans": 3, "exp": "課本：台灣市場94%蛋雞為白色來航雞（Leghorn，產白殼蛋）不同品系雜交後裔。"}, {"stem": "依課本，2017 年台灣畜產業年產值約占農業生產總值的比例是？", "opts": ["約 50%", "約 15%", "約 32.22%", "約 6%"], "ans": 2, "exp": "課本：畜產業年產值1,654億元，占農業總產值5,138億的32.22%。"}]}, {"name": "節點② 品種與消化原理", "icon": "🐄", "area": "核心原理", "desc": "農場主人：分辨偶蹄反芻、認識營養，這裡有 5 片拼圖等你！", "type": "quiz", "qs": [{"stem": "豬在動物分類上屬於下列何者？", "opts": ["單蹄、反芻、多胎", "單蹄、不反芻、單胎", "偶蹄、反芻、單胎", "偶蹄、非反芻、多胎"], "ans": 3, "exp": "課本：豬是偶蹄、非反芻類、多胎動物。"}, {"stem": "牛的複胃分四部分，其中又稱「真胃」的是？", "opts": ["蜂巢胃", "重瓣胃", "皺胃", "瘤胃"], "ans": 2, "exp": "課本：複胃分瘤胃、蜂巢胃、重瓣胃、皺胃（或稱真胃）。"}, {"stem": "兔子在消化上的特徵是下列何者？", "opts": ["偶蹄、非反芻、多胃", "草食、非反芻、單胃、盲腸發達", "偶蹄、反芻、複胃", "單蹄、反芻、單胃"], "ans": 1, "exp": "課本：兔為草食、非反芻獸、單胃，盲腸發達可分解粗纖維，具假反芻行為。"}, {"stem": "下列何者『不屬於』禽畜的六大營養素？", "opts": ["蛋白質", "礦物質", "碳水化合物", "抗生素"], "ans": 3, "exp": "課本六大營養素：碳水化合物、蛋白質、脂肪、維生素、礦物質、水。抗生素非營養素。"}, {"stem": "脂類（脂肪）每單位重量所含能量約為碳水化合物的幾倍？", "opts": ["2.25 倍", "5 倍", "1.5 倍", "1 倍"], "ans": 0, "exp": "課本：脂類每單位重量所含能量為碳水化合物的2.25倍，是主要能量來源。", "adv": true}]}, {"name": "節點③ 專有名詞配對", "icon": "📦", "area": "專有名詞", "desc": "農場主人：倉庫標籤全掉了！每配對成功一組就得到一片拼圖。", "type": "match", "pairs": [["三品種雜交豬（LYD）", "藍瑞斯、約克夏、杜洛克三品種雜交出的商用肉豬，具雜種優勢"], ["反芻與複胃", "牛羊鹿有瘤胃等四個胃，靠微生物發酵消化牧草纖維"], ["生物安全防治", "建立防疫屏障、阻絕病原侵襲畜群的衛生管理方法"], ["種蛋孵化", "以臨界23.9℃控溫、翻蛋、照蛋讓受精蛋孵出雛禽"], ["人工授精（AI）", "採精、檢查、稀釋、保存後注入母畜生殖道的配種技術"], ["六大營養素", "碳水化合物、蛋白質、脂肪、維生素、礦物質與水"]]}, {"name": "節點④ 繁殖與孵化", "icon": "🥚", "area": "延伸知識", "desc": "農場主人：搞懂孵化與配種的關鍵數字，再拿 4 片拼圖！", "type": "quiz", "qs": [{"stem": "家禽種蛋胚胎發育的臨界溫度是？", "opts": ["23.9℃", "37.5℃", "10℃", "18.3℃"], "ans": 0, "exp": "課本：家禽種蛋胚胎發育臨界溫度為23.9℃，須保存於其下以免加速發育。"}, {"stem": "依課本表10-3，下列家禽孵化天數何者正確？", "opts": ["番鴨 21 天", "雞 28 天", "鵝 30 天", "鴕鳥 21 天"], "ans": 2, "exp": "課本表10-3：雞21、鴨/火雞28、鵝30、番鴨35、鴕鳥42天。"}, {"stem": "依課本表10-4，牛、馬、豬、山羊的發情週期為？", "opts": ["30 天", "21 天", "17 天", "7 天"], "ans": 1, "exp": "課本表10-4：牛、馬、豬、山羊發情週期21天，綿羊17天，鹿17–21天。"}, {"stem": "豬隻精液經檢查後，正常精子須達多少比例以上才算合格？", "opts": ["90%", "50%", "70%", "60%"], "ans": 2, "exp": "課本：精子畸形率與受胎率密切相關，經檢查後正常精子要達70%以上才算合格。", "adv": true}]}, {"name": "節點⑤ 飼養與衛生", "icon": "🚜", "area": "實務應用", "desc": "農場主人：最後一站！看畜牧知識如何落實到農場，這裡有 4 片拼圖。", "type": "quiz", "qs": [{"stem": "為克服台灣「熱緊迫」問題，許多農民採用哪種雞舍飼養雞隻？", "opts": ["開放式雞舍", "水濂式雞舍", "放牧雞舍", "高床雞舍"], "ans": 1, "exp": "課本：為克服熱緊迫，已有許多農民採用水濂式雞舍（結合水濂片與強迫通風降溫）。"}, {"stem": "哺乳仔豬出生後注射鐵劑的目的與劑量（課本原題）為？", "opts": ["消毒，10毫克", "防貧血，100–150毫克", "催情，50毫克", "去勢，200毫克"], "ans": 1, "exp": "課本：鐵為血紅素形成必要元素，仔豬需肌肉注射鐵劑100–150毫克以防貧血。"}, {"stem": "業者建立安全屏障、保護動物群避免病原侵襲的方法稱為？", "opts": ["人工授精", "冷烙編號", "強迫換羽", "生物安全防治"], "ans": 3, "exp": "課本：生物安全防治（Biosafety prevention）建立安全屏障，保護動物群避免病原微生物侵襲擴散。"}, {"stem": "台灣牧場糞污「三段式」廢水處理的正確順序是？", "opts": ["好氣發酵→厭氣發酵→固液分離", "固液分離→厭氣發酵→好氣發酵", "固液分離→好氣發酵→厭氣發酵", "厭氣發酵→固液分離→好氣發酵"], "ans": 1, "exp": "課本：三段式廢水處理依序為固液分離→厭氣發酵→好氣發酵。"}]}];
+/* [改5] BOSS：最終挑戰（挑一題進階綜合題；含上下橫線符號的題幹可改寫成文字，答案不可變） */
+const BOSS={"stem": "農場主人最後一問：依課本表10-6，豬、牛、羊的懷孕天數相加（114+280+150）為？（課本原題）", "opts": ["608", "544", "520", "455"], "ans": 1, "exp": "課本表10-6：豬114、牛280、羊150，相加為544天。", "area": "綜合挑戰"};
+/* [改6] 時限（預設 25 分鐘 ≈ 24 項挑戰＋放拼圖） */
+const TIME_LIMIT=25*60;
+/* [改7] EXPECTED_ITEMS：各節點題數合計，必須等於 COLS*ROWS */
+const EXPECTED_ITEMS=4+5+6+4+4+1;   // 24 片   // 24 項挑戰 = 24 片拼圖
+const COLS=6, ROWS=4, PW=200, PH=200;   // 拼圖板 6×4，每片對應原圖 200×200
+/* [改8] PERM：拼圖片發放順序（0..23 的排列、不可重複；最後一個值＝完成圖的視覺焦點格，留給最終挑戰） */
+const PERM=[18,5,12,0,21,7,14,2,23,10,3,16,8,20,1,13,6,22,11,4,17,15,19,9];
+const AREAS=["基本概念","核心原理","專有名詞","延伸知識","實務應用","綜合挑戰"];
+/* [改9] SAVE_PREFIX：每份教材唯一，避免不同遊戲互相覆蓋學生存檔 */
+const SAVE_PREFIX="拼圖遊戲_畜牧_v1::";
+
+/* ══════════════ 狀態與本機存檔 ══════════════ */
+function freshState(){return {name:"",timeLeft:TIME_LIMIT,nodeIdx:0,awarded:[],placed:[],
+  answers:[],finished:false,timedOut:false,bossDone:false,curSave:null,savedAt:null};}
+let S=freshState();
+let timerId=null;
+let curName="";
+let selPiece=null;   // 托盤目前選取的拼圖片 id
+
+function keyFor(name){return SAVE_PREFIX+name;}
+function saveState(){
+  S.savedAt=new Date().toISOString();
+  try{localStorage.setItem(keyFor(S.name),JSON.stringify(S));}catch(e){}
+}
+function loadState(name){
+  try{const raw=localStorage.getItem(keyFor(name)); return raw?JSON.parse(raw):null;}
+  catch(e){return null;}
+}
+function clearSave(name){try{localStorage.removeItem(keyFor(name));}catch(e){}}
+function listSaves(){
+  const out=[];
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const k=localStorage.key(i);
+      if(k&&k.indexOf(SAVE_PREFIX)===0){
+        try{const sv=JSON.parse(localStorage.getItem(k)); if(sv&&sv.name) out.push(sv);}catch(e){}
+      }
+    }
+  }catch(e){}
+  return out.sort((a,b)=>(b.savedAt||"").localeCompare(a.savedAt||""));
+}
+function $(id){return document.getElementById(id);}
+function pieceSvg(pid){
+  const c=pid%COLS, r=Math.floor(pid/COLS);
+  return `<svg viewBox="${c*PW} ${r*PH} ${PW} ${PH}" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice"><use href="#art"/></svg>`;
+}
+
+/* ══════════════ 入口：輸入代號 → 找存檔 ══════════════ */
+function init(){
+  $("resumeBox").innerHTML="";
+  $("nameInput").value=curName||"";
+  const saves=listSaves();
+  $("playersBox").innerHTML = saves.length ?
+    '<div class="players"><div class="ptitle">💾 這台電腦上已有存檔的車手（點代號快速進入）：</div>'+
+    saves.map(sv=>`<span class="pchip" onclick="quickEnter(this.dataset.n)" data-n="${sv.name.replace(/"/g,"&quot;")}">
+      <b>${sv.name}</b>｜${sv.finished?"已完成 🏁":"拼圖 "+(sv.placed?sv.placed.length:0)+"/24 片"}</span>`).join("")+"</div>" : "";
+}
+function quickEnter(name){ $("nameInput").value=name; enter(); }
+function enter(){
+  const name=$("nameInput").value.trim();
+  if(!name){ alert("請先輸入你的學員代號！"); $("nameInput").focus(); return; }
+  curName=name;
+  const sv=loadState(name);
+  if(!sv){ S=freshState(); S.name=name; saveState(); enterGame(); return; }
+  const box=$("resumeBox");
+  const when=sv.savedAt?new Date(sv.savedAt).toLocaleString("zh-TW"):"—";
+  if(sv.finished){
+    box.innerHTML=`<div class="resume-card">
+      🏁 找到 <b>${sv.name}</b> 的紀錄（${when}）：已完成拼圖！<br>可以回顧你的學習分析報告，或重新挑戰刷新紀錄。
+      <div class="row">
+        <button class="btn-main" onclick="viewSavedReport()">📋 查看學習報告</button>
+        <button class="btn-sub" onclick="restartNew()">🔄 重新挑戰</button>
+      </div></div>`;
+  }else{
+    const m=Math.floor(sv.timeLeft/60),s=String(sv.timeLeft%60).padStart(2,"0");
+    box.innerHTML=`<div class="resume-card">
+      💾 找到 <b>${sv.name}</b> 的存檔（${when}）：已通過 <b>${sv.nodeIdx}／5</b> 個節點、
+      獲得 <b>${sv.awarded.length}</b> 片拼圖（已拼上 ${sv.placed.length} 片）、剩餘時間 <b>${m}:${s}</b>。
+      <div class="row">
+        <button class="btn-main" onclick="resumeGame()">▶️ 繼續遊戲（無縫接關）</button>
+        <button class="btn-sub" onclick="viewProgressFromStart()">📊 查看目前進度</button>
+        <button class="btn-sub" onclick="restartNew()">🗑️ 放棄存檔重新開始</button>
+      </div></div>`;
+  }
+  box.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function restartNew(){
+  if(!confirm("確定要刪除「"+curName+"」的存檔並重新開始嗎？")) return;
+  clearSave(curName);
+  S=freshState(); S.name=curName; saveState();
+  $("screen-report").classList.add("hidden");
+  enterGame();
+}
+function resumeGame(){
+  const sv=loadState(curName); if(!sv) return;
+  S=Object.assign(freshState(),sv);
+  if(S.timeLeft<=0){endGame(true); return;}
+  enterGame();
+}
+function viewSavedReport(){
+  const sv=loadState(curName); if(!sv) return;
+  S=Object.assign(freshState(),sv);
+  renderReport(S.timedOut);
+}
+function viewProgressFromStart(){
+  const sv=loadState(curName); if(!sv) return;
+  S=Object.assign(freshState(),sv);
+  $("modal").classList.remove("hidden");
+  renderProgressPanel(true);
+}
+
+/* ══════════════ 主畫面 ══════════════ */
+function enterGame(){
+  $("screen-start").classList.add("hidden");
+  $("screen-report").classList.add("hidden");
+  $("screen-game").classList.remove("hidden");
+  selPiece=null;
+  buildBoard(); renderBoard(); renderTray(); renderNodes(); updateTimerText();
+  clearInterval(timerId);
+  timerId=setInterval(tick,1000);
+}
+function buildBoard(){
+  $("ghost").innerHTML=`<svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><use href="#art"/></svg>`;
+  let h="";
+  for(let pid=0;pid<COLS*ROWS;pid++) h+=`<div class="cell" id="cell${pid}" onclick="dropOn(${pid})"></div>`;
+  $("cells").innerHTML=h;
+}
+function toggleHint(){ $("ghost").classList.toggle("hint",$("hintChk").checked); }
+function renderBoard(){
+  for(let pid=0;pid<COLS*ROWS;pid++){
+    const el=$("cell"+pid);
+    if(S.placed.includes(pid)){ if(!el.classList.contains("filled")){el.classList.add("filled"); el.innerHTML=pieceSvg(pid);} }
+    else{ el.classList.remove("filled"); el.innerHTML=""; }
+  }
+  $("boardCount").textContent=`已拼 ${S.placed.length}／${COLS*ROWS} 片`;
+}
+function renderTray(){
+  const tray=S.awarded.filter(p=>!S.placed.includes(p));
+  $("tray").innerHTML='<span class="traylbl">🧰 拼圖托盤（點拼圖片 → 點拼圖板放置）'+(tray.length?"　共 "+tray.length+" 片待放":"　目前沒有待放的拼圖片")+'</span>'+
+    tray.map(p=>`<div class="piece ${selPiece===p?"sel":""}" id="piece${p}" onclick="selectPiece(${p})">${pieceSvg(p)}</div>`).join("");
+}
+function selectPiece(p){
+  selPiece=(selPiece===p)?null:p;
+  renderTray();
+  banner(selPiece!==null?"已選取拼圖片，點拼圖板上它的位置（看淡淡底圖提示）！":"");
+}
+function dropOn(pid){
+  if(S.placed.includes(pid)) return;
+  if(selPiece===null){ banner("先點托盤中的拼圖片，再點拼圖板放置！"); return; }
+  if(pid===selPiece){
+    S.placed.push(pid);
+    const done=selPiece; selPiece=null;
+    saveState();
+    renderBoard(); renderTray(); renderNodes();
+    const el=$("cell"+pid); el.classList.add("pop"); setTimeout(()=>el.classList.remove("pop"),500);
+    if(S.placed.length===COLS*ROWS){ setTimeout(showComplete,600); return; }
+    banner("✔ 拼上一片！（已拼 "+S.placed.length+"／24）");
+  }else{
+    const el=$("cell"+pid); el.classList.add("bad"); setTimeout(()=>el.classList.remove("bad"),350);
+    banner("✘ 不是這個位置，對照底圖再試一次！");
+  }
+}
+function banner(msg){ $("hintBanner").textContent=msg||defaultHint(); }
+function defaultHint(){
+  const tray=S.awarded.filter(p=>!S.placed.includes(p)).length;
+  if(S.nodeIdx<NODES.length){
+    const n=NODES[S.nodeIdx];
+    return `下一個學習節點：${n.icon} ${n.name}（點右側發亮的卡片挑戰）${tray?"；托盤還有 "+tray+" 片拼圖待放":""}`;
+  }
+  if(!S.bossDone){
+    return tray? "先把托盤中的 "+tray+" 片拼圖放回拼圖板，再挑戰「最終挑戰」拿最後一片！"
+               : "🎉 23 片就位！點「⭐ 最終挑戰」搶下最後一片拼圖！";
+  }
+  return tray? "把最後一片拼圖放回它的位置，完成整幅拼圖！" : "";
+}
+function renderNodes(){
+  const tray=S.awarded.filter(p=>!S.placed.includes(p)).length;
+  const bossReady=S.nodeIdx>=NODES.length && tray===0 && !S.bossDone;
+  let h=NODES.map((n,i)=>{
+    const cls=i<S.nodeIdx?"done":i===S.nodeIdx?"next":"locked";
+    const cnt=n.type==="quiz"?n.qs.length:n.pairs.length;
+    return `<div class="ncard ${cls}" onclick="tryOpenNode(${i})">
+      <div class="nicon">${n.icon}</div>
+      <div><div class="nt">${n.name}</div><div class="nd">${i<S.nodeIdx?"已完成 · 拼圖 "+cnt+" 片到手":n.type==="match"?"名詞配對 · "+cnt+" 片拼圖":"單選題 · "+cnt+" 片拼圖"}</div></div>
+    </div>`;
+  }).join("");
+  h+=`<div class="ncard boss ${S.bossDone?"done":bossReady?"next":"locked"}" onclick="tryOpenBoss()">
+    <div class="nicon">⭐</div>
+    <div><div class="nt">最終挑戰</div><div class="nd">${S.bossDone?"已完成":"通過 5 節點＋拼圖全部就位後開啟 · 最後 1 片"}</div></div>
+  </div>`;
+  $("nodesCol").innerHTML=h;
+  banner("");
+}
+function tryOpenNode(i){
+  if(i<S.nodeIdx){ banner("這個節點已完成！"); return; }
+  if(i>S.nodeIdx){ banner("先完成前面的學習節點！"); return; }
+  openNode(i);
+}
+function tryOpenBoss(){
+  if(S.bossDone) return;
+  const tray=S.awarded.filter(p=>!S.placed.includes(p)).length;
+  if(S.nodeIdx<NODES.length){ banner("要先通過 5 個學習節點！"); return; }
+  if(tray>0){ banner("還有 "+tray+" 片拼圖沒放上拼圖板，先完成再來挑戰！"); return; }
+  openBoss();
+}
+function updateTimerText(){
+  const m=String(Math.floor(Math.max(S.timeLeft,0)/60)).padStart(2,"0"),
+        s=String(Math.max(S.timeLeft,0)%60).padStart(2,"0");
+  const t=$("timer"); t.textContent=`${m}:${s}`;
+  if(S.timeLeft<=180) t.classList.add("warn");
+}
+function tick(){
+  S.timeLeft--;
+  updateTimerText();
+  if(S.timeLeft%5===0) saveState();
+  if(S.timeLeft<=0){clearInterval(timerId); endGame(true);}
+}
+function quitGame(){
+  saveState();
+  clearInterval(timerId);
+  $("screen-game").classList.add("hidden");
+  $("modal").classList.add("hidden");
+  $("screen-start").classList.remove("hidden");
+  init();
+  enter();
+}
+
+/* ══════════════ 發放拼圖片 ══════════════ */
+function awardPiece(){
+  const pid=PERM[S.awarded.length];
+  S.awarded.push(pid);
+  return pid;
+}
+
+/* ══════════════ 測驗節點 ══════════════ */
+let cur={};
+function openNode(i){
+  const n=NODES[i];
+  const saved=(S.curSave&&S.curSave.i===i)?S.curSave:null;
+  if(n.type==="quiz"){
+    cur={n,qi:saved?saved.qi:0,attempts:0};
+    if(!saved) S.curSave={i,qi:0};
+    $("modal").classList.remove("hidden");
+    renderQuiz();
+  }else{
+    cur={n,matched:saved&&saved.matched?[...saved.matched]:[],matchAttempts:{}};
+    if(!saved) S.curSave={i,matched:[]};
+    $("modal").classList.remove("hidden");
+    renderMatch();
+  }
+  saveState();
+}
+function dots(n,curI,okArr){
+  let h='<div class="progress-dots">';
+  for(let k=0;k<n;k++) h+=`<div class="pdot ${okArr[k]?"ok":k===curI?"cur":""}"></div>`;
+  return h+"</div>";
+}
+function renderQuiz(){
+  const n=cur.n,q=n.qs[cur.qi];
+  cur.attempts=0;
+  const okArr=n.qs.map((_,k)=>k<cur.qi);
+  $("panel").innerHTML=`
+    <h2>${n.icon} ${n.name}</h2><div class="desc">${n.desc}</div>
+    ${dots(n.qs.length,cur.qi,okArr)}
+    <div class="stem">第 ${cur.qi+1}／${n.qs.length} 題　${q.stem}${q.adv?'<span class="tag">★進階</span>':""}</div>
+    <div id="opts">${q.opts.map((o,k)=>`<div class="opt" data-k="${k}" onclick="pick(${k})">（${"ABCD"[k]}）${o}</div>`).join("")}</div>
+    <div id="fb"></div>
+    <div class="actions"><button class="btn-ghost" onclick="pauseToBoard()">💾 暫停回工坊</button></div>`;
+}
+function pauseToBoard(){ saveState(); $("modal").classList.add("hidden"); renderNodes(); renderTray(); }
+function pick(k){
+  const n=cur.n,q=n.qs[cur.qi];
+  const opts=[...document.querySelectorAll("#opts .opt")];
+  if(k===q.ans){
+    opts.forEach(o=>{o.classList.add("dim"); if(+o.dataset.k===q.ans){o.classList.remove("dim");o.classList.add("correct");}});
+    S.answers.push({area:n.area,stem:q.stem,firstTry:cur.attempts===0,exp:q.exp});
+    const pid=awardPiece();
+    S.curSave={i:S.nodeIdx,qi:cur.qi+1};
+    saveState(); renderTray();
+    $("fb").innerHTML=`<div class="feedback ok">${cur.attempts===0?"✔ 一次答對，獲得拼圖一片！":"✔ 答對了，獲得拼圖一片（下次爭取一次命中）"}</div>
+      <div class="piece-award"><div class="piece">${pieceSvg(pid)}</div></div>
+      <div class="exp">💡 ${q.exp}</div>
+      <div class="actions"><button class="btn-blue" onclick="nextQ()">${cur.qi<n.qs.length-1?"下一題 ▶":"完成節點 🏆"}</button></div>`;
+  }else{
+    cur.attempts++;
+    opts[k].classList.add("wrong");
+    setTimeout(()=>opts[k].classList.remove("wrong"),450);
+    $("fb").innerHTML=`<div class="feedback no">✘ 不對喔，再想一想！（提示：先回想真值表與定義）</div>`;
+  }
+}
+function nextQ(){
+  if(cur.qi<cur.n.qs.length-1){cur.qi++; renderQuiz();}
+  else nodeClear();
+}
+
+/* ══════════════ 配對節點 ══════════════ */
+let mSel=null,mLeft=0;
+function renderMatch(){
+  const n=cur.n;
+  const defs=n.pairs.map((p,i)=>({t:p[1],i})).sort(()=>Math.random()-.5);
+  mSel=null;
+  $("panel").innerHTML=`
+    <h2>${n.icon} ${n.name}</h2><div class="desc">${n.desc}<br>先點左邊的<b>名詞</b>，再點右邊對應的<b>說明</b>。</div>
+    <div class="match-grid">
+      <div>${n.pairs.map((p,i)=>`<div class="mitem term" id="t${i}" onclick="mPick('t',${i})">${p[0]}</div>`).join("")}</div>
+      <div>${defs.map(d=>`<div class="mitem" id="d${d.i}" onclick="mPick('d',${d.i})">${d.t}</div>`).join("")}</div>
+    </div><div id="fb"></div>
+    <div class="actions"><button class="btn-ghost" onclick="pauseToBoard()">💾 暫停回工坊</button></div>`;
+  cur.matched.forEach(i=>{$("t"+i).classList.add("okpair"); $("d"+i).classList.add("okpair");});
+  mLeft=n.pairs.length-cur.matched.length;
+  if(mLeft===0) $("fb").innerHTML='<div class="actions"><button class="btn-blue" onclick="nodeClear()">完成節點 🏆</button></div>';
+}
+function mPick(kind,i){
+  if(kind==="t"){
+    if(mSel!==null) $("t"+mSel).classList.remove("sel");
+    mSel=i; $("t"+i).classList.add("sel"); return;
+  }
+  if(mSel===null){ $("fb").innerHTML='<div class="feedback no">先點選左邊的名詞！</div>'; return; }
+  cur.matchAttempts[mSel]=cur.matchAttempts[mSel]||0;
+  if(i===mSel){
+    $("t"+mSel).classList.remove("sel");
+    $("t"+mSel).classList.add("okpair"); $("d"+i).classList.add("okpair");
+    S.answers.push({area:cur.n.area,stem:"配對：「"+cur.n.pairs[mSel][0]+"」",firstTry:cur.matchAttempts[mSel]===0,
+      exp:cur.n.pairs[mSel][0]+"＝"+cur.n.pairs[mSel][1]});
+    const pid=awardPiece();
+    cur.matched.push(mSel);
+    S.curSave={i:S.nodeIdx,matched:[...cur.matched]};
+    saveState(); renderTray();
+    mSel=null; mLeft--;
+    $("fb").innerHTML=`<div class="feedback ok">✔ 配對正確，獲得拼圖一片！</div>
+      <div class="piece-award"><div class="piece">${pieceSvg(pid)}</div></div>`;
+    if(mLeft===0) $("fb").innerHTML+='<div class="actions"><button class="btn-blue" onclick="nodeClear()">完成節點 🏆</button></div>';
+  }else{
+    cur.matchAttempts[mSel]++;
+    $("d"+i).classList.add("flash"); setTimeout(()=>$("d"+i).classList.remove("flash"),450);
+    $("fb").innerHTML='<div class="feedback no">✘ 這不是它的說明，再試一次！</div>';
+  }
+}
+
+/* ══════════════ 過節點與最終挑戰 ══════════════ */
+function nodeClear(){
+  const n=cur.n;
+  S.nodeIdx++;
+  S.curSave=null;
+  saveState();
+  const trayN=S.awarded.filter(p=>!S.placed.includes(p)).length;
+  $("panel").innerHTML=`
+    <h2>🏆 完成「${n.name}」！</h2>
+    <p style="text-align:center;margin:14px 0">拼圖片已放進托盤（目前待放 <b style="color:var(--amber)">${trayN}</b> 片）。<br>
+    回到工坊把拼圖放上拼圖板，或先繼續挑戰下一個節點。</p>
+    <div class="actions"><button class="btn-blue" onclick="closeModal()">回到拼圖工坊 🧩</button></div>`;
+}
+function closeModal(){ $("modal").classList.add("hidden"); renderNodes(); renderTray(); renderBoard(); }
+function openBoss(){
+  cur={attempts:0};
+  $("modal").classList.remove("hidden");
+  $("panel").innerHTML=`
+    <h2>⭐ 最終挑戰</h2>
+    <div class="desc">23 片拼圖已就位！答對這一題，最後一片「BCM 晶片」就是你的！</div>
+    <div class="stem">${BOSS.stem}<span class="tag">★最終挑戰</span></div>
+    <div id="opts">${BOSS.opts.map((o,k)=>`<div class="opt" data-k="${k}" onclick="bossPick(${k})">（${"ABCD"[k]}）${o}</div>`).join("")}</div>
+    <div id="fb"></div>
+    <div class="actions"><button class="btn-ghost" onclick="pauseToBoard()">💾 暫停回工坊</button></div>`;
+}
+function bossPick(k){
+  const opts=[...document.querySelectorAll("#opts .opt")];
+  if(k===BOSS.ans){
+    opts.forEach(o=>{o.classList.add("dim"); if(+o.dataset.k===BOSS.ans){o.classList.remove("dim");o.classList.add("correct");}});
+    S.answers.push({area:BOSS.area,stem:BOSS.stem,firstTry:cur.attempts===0,exp:BOSS.exp});
+    const pid=awardPiece();
+    S.bossDone=true;
+    saveState(); renderTray();
+    $("fb").innerHTML=`<div class="feedback ok">✔ 正確！最後一片拼圖到手！</div>
+      <div class="piece-award"><div class="piece">${pieceSvg(pid)}</div></div>
+      <div class="exp">💡 ${BOSS.exp}</div>
+      <div class="actions"><button class="btn-main" onclick="closeModal()">把它拼上去，完成拼圖 🧩</button></div>`;
+  }else{
+    cur.attempts++;
+    opts[k].classList.add("wrong"); setTimeout(()=>opts[k].classList.remove("wrong"),450);
+    $("fb").innerHTML='<div class="feedback no">✘ 老師傅搖搖頭……想想笛摩根定理「拆線變號」的口訣？</div>';
+  }
+}
+function showComplete(){
+  clearInterval(timerId);
+  $("modal").classList.remove("hidden");
+  $("panel").innerHTML=`
+    <h2>🎉 拼圖完成！</h2>
+    <p style="text-align:center;margin-top:6px">你拼出了「汽車數位邏輯」全圖——邏輯閘、TTL IC 與 BCM，正是現代汽車電子的心臟！</p>
+    <div class="final-art"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><use href="#art"/></svg></div>
+    <div class="actions"><button class="btn-main" onclick="endGame(false)">📋 產生我的學習分析報告</button></div>`;
+}
+
+/* ══════════════ 統計工具 ══════════════ */
+function areaStats(){
+  const stat={};
+  AREAS.forEach(a=>stat[a]={total:0,first:0});
+  S.answers.forEach(r=>{stat[r.area].total++; if(r.firstTry)stat[r.area].first++;});
+  return stat;
+}
+function buildBars(stat){
+  let bars="";
+  AREAS.forEach(a=>{
+    const st=stat[a];
+    if(st.total===0){
+      bars+=`<div class="bar-row"><span class="bl">${a}</span><div class="bar-track"><div class="bar-fill low" style="width:0%"></div></div><span class="bv">未挑戰</span></div>`;
+      return;}
+    const pct=Math.round(100*st.first/st.total);
+    const cls=pct>=80?"":pct>=60?"mid":"low";
+    bars+=`<div class="bar-row"><span class="bl">${a}</span><div class="bar-track"><div class="bar-fill ${cls}" style="width:${pct}%"></div></div><span class="bv">${pct}%（${st.first}/${st.total}）</span></div>`;
+  });
+  return bars;
+}
+
+/* ══════════════ 隨時查看進度 ══════════════ */
+function showProgress(){
+  $("modal").classList.remove("hidden");
+  renderProgressPanel(false);
+}
+function renderProgressPanel(fromStart){
+  const stat=areaStats();
+  const used=TIME_LIMIT-S.timeLeft, mm=Math.floor(used/60), ss=String(used%60).padStart(2,"0");
+  const firstAll=S.answers.filter(r=>r.firstTry).length;
+  const rate=S.answers.length?Math.round(100*firstAll/S.answers.length):0;
+  const stTags=NODES.map((n,i)=>{
+    const cls=i<S.nodeIdx?"done":i===S.nodeIdx?"cur":"";
+    const mark=i<S.nodeIdx?"✔ ":i===S.nodeIdx?"▶ ":"🔒 ";
+    return `<span class="pv-st ${cls}">${mark}${n.icon} ${n.name}</span>`;}).join("")+
+    `<span class="pv-st ${S.bossDone?"done":""}">${S.bossDone?"✔":"🔒"} ⭐ 最終挑戰</span>`;
+  const wrongs=S.answers.filter(r=>!r.firstTry);
+  $("panel").innerHTML=`
+    <h2>📊 ${S.name} 的學習進度</h2>
+    <div class="pv-meta">
+      <span>⏱️ 已用時間 <b>${mm} 分 ${ss} 秒</b></span>
+      <span>🧩 拼圖 <b>${S.placed.length}／24</b> 片（托盤 ${S.awarded.length-S.placed.length} 片）</span>
+      <span>✅ 完成挑戰 <b>${S.answers.length}／${EXPECTED_ITEMS}</b> 項</span>
+      <span>🎯 一次答對率 <b>${rate}%</b></span>
+    </div>
+    <div class="pv-stations">${stTags}</div>
+    ${buildBars(stat)}
+    <p style="font-size:.8rem;color:var(--mut);margin-top:6px">藍＝精熟（≥80%）　橘＝尚可（60–79%）　紅＝待加強（&lt;60%）；進度已自動儲存於本機。</p>
+    ${wrongs.length?`<p style="font-size:.88rem;margin-top:8px">📝 目前有 <b>${wrongs.length}</b> 題第一次沒答對，完成拼圖後報告會附完整解析。</p>`:""}
+    <div class="actions">
+      ${fromStart?'<button class="btn-ghost" onclick="backToStart()">返回</button><button class="btn-blue" onclick="resumeGame(); closeModal()">▶️ 繼續遊戲</button>'
+                 :'<button class="btn-blue" onclick="closeModal()">回到遊戲 ▶</button>'}
+    </div>`;
+}
+function backToStart(){ $("modal").classList.add("hidden"); }
+
+/* ══════════════ 結算報告 ══════════════ */
+function endGame(timeout){
+  clearInterval(timerId);
+  S.finished=true; S.timedOut=!!timeout; S.curSave=null;
+  saveState();
+  renderReport(timeout);
+}
+function renderReport(timeout){
+  $("modal").classList.add("hidden");
+  $("screen-game").classList.add("hidden");
+  $("screen-start").classList.add("hidden");
+  const used=TIME_LIMIT-S.timeLeft;
+  const mm=Math.floor(used/60),ss=used%60;
+  const stat=areaStats();
+  const totalItems=S.answers.length;
+  const firstAll=S.answers.filter(r=>r.firstTry).length;
+  const score=Math.round(100*(firstAll+0.5*(totalItems-firstAll))/EXPECTED_ITEMS);
+  const medal=score>=90?["🥇","金牌拼圖大師"]:score>=75?["🥈","銀牌拼圖大師"]:score>=60?["🥉","銅牌拼圖好手"]:["🔧","見習拼圖學徒"];
+  const wrongs=S.answers.filter(r=>!r.firstTry);
+
+  /* [改10] adviceMap：各領域弱點建議；連結用相對路徑指向該教材的學習歷程/線上測驗/專有名詞索引 */
+  const adviceMap={
+    "基本概念":`<div class="advice"><b>基本概念</b>還不夠穩：回到 <a href="學習歷程_畜牧.html">學習歷程網頁</a> 的「基本概念」節點，重讀畜牧的意義、法定家禽家畜與產業重要性。</div>`,
+    "核心原理":`<div class="advice"><b>品種與消化原理</b>需要加強：把偶蹄/單蹄、反芻/不反芻、複胃四部分（瘤胃、蜂巢胃、重瓣胃、皺胃）與六大營養素各整理一次，再用 <a href="畜牧_線上複習測驗.html">線上複習測驗</a> 自我檢核。</div>`,
+    "專有名詞":`<div class="advice"><b>專有名詞</b>記憶模糊：開啟 <a href="index.html">畜牧專有名詞索引</a>，優先複習「三品種雜交豬」「反芻與複胃」「生物安全防治」三份深度報告的第一頁定義卡。</div>`,
+    "延伸知識":`<div class="advice"><b>繁殖與孵化</b>相關題目失分：背熟種蛋臨界溫度 23.9℃、孵化天數（雞21/鴨28/鵝30/番鴨35/鴕鳥42）、發情週期 21 天與懷孕天數（兔30/豬114/羊150/牛280/馬336）。</div>`,
+    "實務應用":`<div class="advice"><b>飼養與衛生</b>連結不足：重讀生物安全防治（控制感染源、疫苗、三段式廢水）與仔豬管理、水濂式雞舍等實務作法。</div>`,
+    "綜合挑戰":`<div class="advice"><b>綜合判斷</b>再磨練：把各家禽畜的關鍵數字（懷孕天數、發情週期、體溫）整理成一張表反覆記憶。</div>`};
+  let advHtml="";
+  AREAS.forEach(a=>{const st=stat[a];
+    if(st.total>0 && st.first/st.total<0.8) advHtml+=adviceMap[a];});
+  if(timeout){
+    const undone=NODES.filter((_,i)=>i>=S.nodeIdx).map(n=>n.name).join("、");
+    if(undone) advHtml=`<div class="advice">⏰ 時間內尚未完成：<b>${undone}</b>。建議先複習對應章節，再重新挑戰一次完成整幅拼圖。</div>`+advHtml;
+  }
+  if(!advHtml) advHtml=`<div class="advice">🎯 各領域第一次答對率都在 80% 以上，基礎非常紮實，直接進入進階挑戰吧！</div>`;
+
+  /* [改11] nexts：下一步學習路線 4 條（進階題型、延伸主題、參考資料資料夾、動手做） */
+  const nexts=[
+    "挑戰完整的 <a href='./畜牧_線上複習測驗.html'>50 題線上學習評量</a>，特別是 ★進階鑑別題（脂類2.25倍、精子>70%、初乳、誘發排卵）。",
+    "把<b>各家禽畜的關鍵數字</b>（孵化天數、發情週期、懷孕天數、體溫）整理成對照表，反覆背誦。",
+    "延伸閱讀：<b>生物安全防治</b> 與 <b>口蹄疫與人畜共通傳染病</b> 深度報告，了解台灣最新防疫時事（非洲豬瘟）。",
+    "動手做：對照學習歷程的「實作步驟」，練習種蛋孵化、人工授精與哺乳仔豬管理流程。"];
+  const nextHtml=nexts.map((n,i)=>`<div class="nextstep"><span class="n">${i+1}</span><span>${n}</span></div>`).join("");
+
+  const wrongHtml = wrongs.length===0 ? `<p style="color:var(--ok);font-weight:700">👏 全部題目都一次答對，沒有需要訂正的題目！</p>`
+    : wrongs.map(w=>`<div class="wrongitem"><b>【${w.area}】</b>${w.stem}<div class="we">💡 ${w.exp}</div></div>`).join("");
+
+  const rate=totalItems?Math.round(100*firstAll/totalItems):0;
+  $("screen-report").innerHTML=`
+  <div class="report-hero">
+    <h1>📋 ${S.name} 的學習歷程分析報告</h1>
+    <div class="medal">${medal[0]}</div>
+    <div class="big">${score} 分</div>
+    <div>${medal[1]}　${timeout?"⏰ 時間到，挑戰結束":"🎉 成功拼出「畜牧農場」全圖！"}</div>
+    <!-- [改12] 報告 hero 的主題名稱 -->
+    <div class="meta">主題：畜牧（第 10 章）｜用時 ${mm} 分 ${ss} 秒｜完成 ${totalItems}／${EXPECTED_ITEMS} 項挑戰｜拼上 ${S.placed.length}／24 片｜一次答對率 ${rate}%｜${new Date().toLocaleDateString("zh-TW")}</div>
+  </div>
+  <div class="rwrap">
+    <div class="rcard"><h2>🧩 你的拼圖成果</h2>
+      <div class="final-art" style="margin-top:4px"><svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg"><use href="#art"/></svg></div>
+      ${S.placed.length<24?`<p style="font-size:.88rem;color:var(--mut)">（本次拼上 ${S.placed.length}／24 片，上圖為完整圖；再挑戰一次把它親手拼完吧！）</p>`:""}
+    </div>
+    <div class="rcard"><h2>📊 各領域表現（第一次答對率）</h2>${buildBars(stat)}
+      <p style="font-size:.82rem;color:var(--mut);margin-top:8px">藍色＝精熟（≥80%）　橘色＝尚可（60–79%）　紅色＝待加強（&lt;60%）</p></div>
+    <div class="rcard"><h2>📝 需要訂正的題目（第一次沒答對）</h2>${wrongHtml}</div>
+    <div class="rcard"><h2>🎯 給你的學習建議</h2>${advHtml}</div>
+    <div class="rcard"><h2>🚀 下一步學習路線</h2>${nextHtml}</div>
+    <div class="report-actions">
+      <button class="btn-blue" onclick="window.print()">🖨️ 列印／存成 PDF</button>
+      <button class="btn-ghost" onclick="backToHome()">🏠 回到首頁</button>
+      <button class="btn-main" onclick="restartFromReport()">🔄 再玩一次</button>
+    </div>
+    <p style="text-align:center;font-size:.82rem;color:var(--mut)">此報告已存於本機，之後打開網頁按「查看學習報告」即可回顧。</p>
+  </div>`;
+  $("screen-report").classList.remove("hidden");
+  window.scrollTo(0,0);
+}
+function backToHome(){
+  $("screen-report").classList.add("hidden");
+  $("screen-start").classList.remove("hidden");
+  init();
+}
+function restartFromReport(){
+  if(!confirm("重新挑戰會清除「"+S.name+"」上一次的紀錄，確定嗎？")) return;
+  clearSave(S.name); location.reload();
+}
+
+init();
+$("nameInput").addEventListener("keydown",e=>{if(e.key==="Enter")enter();});
+</script>
+</body>
+</html>
